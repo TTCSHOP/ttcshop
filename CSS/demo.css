@@ -28,6 +28,7 @@ body {
             flex-grow: 1; }
   
   .preview-thumbnail.nav-tabs {
+    margin-left: 125px;
     border: none;
     margin-top: 15px; }
     .preview-thumbnail.nav-tabs li {
