@@ -20,7 +20,10 @@ for ($i = 1; $i <= 8; $i++) {
 
     echo
         '<div class="card mb-3 mr-ml-1" style="width: 270px;">
-            <img src="./images/'.$row[$i]['image'].'"class="card-img-top" alt="...">
+            <a  href="./phone/add_cart.php?buynow=' . $row[$i][0] . '">
+                <img src="./images/' . $row[$i]['image'] . '" class="card-img-top" alt="..." >
+            </a>
+           
             <div class="card-body">
                     <h5 class="card-title">' . $row[$i]['name'] . '</h5>' .
                     '<div class=row>'.
@@ -59,7 +62,9 @@ for ($i = 1; $i <= 8; $i++) {
 
     echo
         '<div class="card mb-3 mr-ml-1" style="width: 270px;">
-            <img src="./images/'.$row[$i]['image'].'"class="card-img-top" alt="...">
+        <a  href="./phone/add_cart.php?buynow=' . $row[$i][0] . '">
+            <img src="./images/' . $row[$i]['image'] . '" class="card-img-top" alt="..." >
+        </a>
             <div class="card-body">
                     <h5 class="card-title">' . $row[$i]['name'] . '</h5>' .
                     '<div class=row>'.

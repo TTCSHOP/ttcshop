@@ -7,8 +7,10 @@ include('../includes/head.php');
 if (isset($_COOKIE['userId'])) {
     if (isset($_GET['buynow'])) {
         $id = $_GET['buynow'];
-        $result = mysqli_query($connect, "SELECT * FROM products WHERE id = '$id'");
-        $row = mysqli_fetch_array($result);
+        $result = mysqli_query($connect, "SELECT * FROM products WHERE id = '$id'"); // lấy của products
+        $product_details = mysqli_query($connect, "SELECT * FROM productdetails WHERE id = '$id'"); // lấy của productdetails
+        $row = mysqli_fetch_array($result); // mảng của products
+        $row_details = mysqli_fetch_array($product_details); // mảng của products details
         $link = "../images/" . $row['image'];
 
         $amount = 0;
@@ -17,6 +19,8 @@ if (isset($_COOKIE['userId'])) {
     if (isset($_GET['buynow'])) {
         $id = $_GET['buynow'];
         $result = mysqli_query($connect, "SELECT * FROM products WHERE id = '$id'");
+        $product_details = mysqli_query($connect, "SELECT * FROM productdetails WHERE id = '$id'");
+        $row_details = mysqli_fetch_array($product_details);
         $row = mysqli_fetch_array($result);
         $link = "../images/" . $row['image'];
         $num_of_product = 0; // số lượng của sp có $id trong giỏ hàng
@@ -43,7 +47,7 @@ if (isset($_COOKIE['userId'])) {
 
     <head>
 
-      
+
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
         <link href="../CSS/demo.css" rel="stylesheet">
@@ -96,19 +100,57 @@ if (isset($_COOKIE['userId'])) {
                         </div>
                     </div>
                 </div>
-                <p class="product-description">
+                <!-- <p class="product-description">
                     <pre><?php echo $row['description'] ?></pre>
-                </p>
-            </div>
-            <?php echo $row['description'] ?>
-        </div>
-        <div class="container mt-3 mb-3">
-            <h5 class="text-danger">Video review</h5>
-             <iframe width="560" height="315" src="https://www.youtube.com/embed/1qZECp4JzRE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-       <?php
-       include('../includes/foot.php');
-       ?>
-    </body>
+                </p> -->
 
-    </html>
+            </div>
+
+        </div>
+        <div class="container d-flex flex-row mt-3 mb-3">
+             <h5 class="col-md-7 text-danger">Video review</h5>
+        <h5 class="col-md-6 ml-5 text-danger">Thông số kĩ thuật</h5>
+        </div>
+       
+        <div class="container d-flex flex-row mt-3 mb-3">
+            <iframe class="col-md-7" width="560" height="315" src="https://www.youtube.com/embed/1qZECp4JzRE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="col-md-5 ml-4">
+                <table class="table">
+                
+                    <tbody>
+                        <tr>
+                            <td style="width:200px">Màn hình:</td>
+                            <td><?php echo $row_details['screen']?></td>
+                        </tr>
+                        <tr>
+                            <td style="width:200px">CPU:</td>
+                            <td><?php echo $row_details['cpu']?></td>
+                        </tr>
+                        <tr>
+                            <td style="width:200px">Ram:</td>
+                            <td><?php echo $row_details['ram']?></td>
+                        </tr>
+                        <tr>
+                            <td style="width:200px">Rom:</td>
+                            <td><?php echo $row_details['rom']?></td>
+                        </tr>
+                        <tr>
+                            <td style="width:200px">Sim:</td>
+                            <td><?php echo $row_details['sim']?></td>
+                        </tr>
+                        <tr>
+                            <td style="width:200px">Pin:</td>
+                            <td><?php echo $row_details['pin']?></td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+
+
+</div>
+<?php
+include('../includes/foot.php');
+?>
+</body>
+
+</html>
