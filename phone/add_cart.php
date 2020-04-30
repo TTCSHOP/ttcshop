@@ -113,7 +113,7 @@ if (isset($_COOKIE['userId'])) {
         </div>
        
         <div class="container d-flex flex-row mt-3 mb-3">
-            <iframe class="col-md-7" width="560" height="315" src="https://www.youtube.com/embed/1qZECp4JzRE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="col-md-7" width="560" height="315" src="<?php echo $row_details['youtube']?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="col-md-5 ml-4">
                 <table class="table">
                 
