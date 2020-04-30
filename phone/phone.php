@@ -12,7 +12,7 @@ require('./includes/data.php');
 $row[10] = null;
 echo '<div class="card-group container mt-2" id="content">';
 echo '<div class="content-card d-flex justify-content-between flex-wrap">';
-$result = mysqli_query($connect, "SELECT * FROM products");
+$result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >0");
 for ($i = 1; $i <= 8; $i++) {
     // $result = mysqli_query($connect, "SELECT * FROM products");
 
@@ -54,7 +54,7 @@ echo '</div></div>';
 $row[10] = null;
 echo '<div class=" container mt-2 " id="content">';
 echo '<div class="content-card d-flex justify-content-between flex-wrap">';
-$result = mysqli_query($connect, "SELECT * FROM products");
+$result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock>0");
 for ($i = 1; $i <= 8; $i++) {
     
 
