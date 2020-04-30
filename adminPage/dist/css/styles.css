@@ -10216,3 +10216,6 @@ body {
 td{
   width: 15%;
 }
+.wrap {
+  word-wrap: break-word;
+}
