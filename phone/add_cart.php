@@ -46,8 +46,6 @@ if (isset($_COOKIE['userId'])) {
     <html>
 
     <head>
-
-
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
         <link href="../CSS/demo.css" rel="stylesheet">
@@ -59,17 +57,17 @@ if (isset($_COOKIE['userId'])) {
                 <div class="container-fliud">
                     <div class="wrapper row">
                         <div class="preview col-md-6">
-                            <div class="preview-pic tab-content">
-                                <div class="tab-pane active" id="pic-1"> <img src="../images/<?php echo $row_details['image1'] ?>" /></div>
-                                <div class="tab-pane" id="pic-2"><img src="../images/<?php echo $row_details['image2'] ?>" /></div>
-                                <div class="tab-pane" id="pic-3"><img src="../images/<?php echo $row_details['image3'] ?>" /></div>
+                            <div class="preview-pic tab-content" >
+                                <div class="tab-pane active" id="pic-1"> <img src="../images/<?php echo $row_details['image1'] ?>" style="height:70vh"/></div>
+                                <div class="tab-pane" id="pic-2"><img src="../images/<?php echo $row_details['image2'] ?>" style="height:70vh"/></div>
+                                <div class="tab-pane" id="pic-3"><img src="../images/<?php echo $row_details['image3'] ?>" style="height:70vh"/></div>
                                 <!-- <div class="tab-pane" id="pic-4"><img src="../images/<?php echo $row['image'] ?>" /></div>
                                 <div class="tab-pane" id="pic-5"><img src="../images/<?php echo $row['image'] ?>" /></div> -->
                             </div>
                             <ul class="preview-thumbnail nav nav-tabs ml-10">
-                                <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="../images/<?php echo $row_details['image1'] ?>" /></a></li>
-                                <li><a data-target="#pic-2" data-toggle="tab"><img src="../images/<?php echo $row_details['image2'] ?>" /></a></li>
-                                <li><a data-target="#pic-3" data-toggle="tab"><img src="../images/<?php echo $row_details['image3'] ?>" /></a></li>
+                                <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="../images/<?php echo $row_details['image1'] ?>" style="height:50px"/></a></li>
+                                <li><a data-target="#pic-2" data-toggle="tab"><img src="../images/<?php echo $row_details['image2'] ?>" style="height:50px"/></a></li>
+                                <li><a data-target="#pic-3" data-toggle="tab"><img src="../images/<?php echo $row_details['image3'] ?>" style="height:50px"/></a></li>
                                 <!-- <li><a data-target="#pic-4" data-toggle="tab"><img src="../images/<?php echo $row['image'] ?>" /></a></li>
                                 <li><a data-target="#pic-5" data-toggle="tab"><img src="../images/<?php echo $row['image'] ?>" /></a></li> -->
                             </ul>
