@@ -23,14 +23,21 @@ include('../includes/header.php');
                             <thead>
                                 <tr>
                                 <th> <button type="button" class="d-flex flex-row btn btn-success btn-rounded btn-sm " data-toggle="modal" data-target="#btn-add"><i class="fas fa-plus-square mr-2 mt-1"></i>Thêm&nbsp;&nbsp;</button></th>
+                                <!-- <th>Sửa</th> -->
                                     <th>STT</th>
-                                    
+                                    <th>Hình ảnh</th>
                                     <th>Tên sản phẩm</th>
+                                    <th>Hãng sản phẩm</th>
                                     <th>Giá sản phẩm</th>
                                     <th>Giới thiệu</th>
-                                    <th>Chi tiết</th>
+                                    <th>Màn hình</th>
+                                    <th>Camera</th>
+                                    <th>CPU</th>
+                                    <th>Sim</th>
+                                    <th>Thời lượng pin</th>
+                                    <th>Bộ nhớ ngoài</th>
+                                    <th>Bộ nhớ trong</th>
                                     <th>Số lượng</th>
-                                    <th>Hình ảnh</th>
                                     <!-- <th>Hình ảnh</th>
                                     <th>abc</th> -->
                                     <!-- <th> <button type="button " class="d-flex flex-row btn btn-success btn-rounded btn-sm "><i class="fas fa-plus-circle"></i>&nbsp;Add</button></th> -->
@@ -42,12 +49,19 @@ include('../includes/header.php');
                                 <tr>
                                      <th>Sửa</th>
                                     <th>STT</th>
+                                    <th>Hình ảnh</th>
                                     <th>Tên sản phẩm</th>
+                                    <th>Hãng sản phẩm</th>
                                     <th>Giá sản phẩm</th>
                                     <th>Giới thiệu</th>
-                                    <th>Chi tiết</th>
+                                    <th>Màn hình</th>
+                                    <th>Camera</th>
+                                    <th>CPU</th>
+                                    <th>Sim</th>
+                                    <th>Thời lượng pin</th>
+                                    <th>Bộ nhớ ngoài</th>
+                                    <th>Bộ nhớ trong</th>
                                     <th>Số lượng</th>
-                                    <th>Hình ảnh</th>
                                     
                                 </tr>
                             </tfoot>
@@ -55,10 +69,12 @@ include('../includes/header.php');
                                 <?php
 
                                 // $row[10] = null;
-                                $result = mysqli_query($connect, "SELECT * FROM products");
-                                 $i=1;
+                                $result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >=0");
+                                $result_details = mysqli_query($connect, "SELECT * FROM productdetails WHERE isdeleted is NULL");
+                                
+                                $i=1;
                                 while ($row =  mysqli_fetch_array($result)) {
-
+                                    $row_details = mysqli_fetch_array($result_details);
                                     echo
                                         '<tr>
                                         <td >
@@ -66,27 +82,48 @@ include('../includes/header.php');
                                                 <button type="submit" class="btn btn-info btn-rounded btn-sm my-0 mb-2"name="edit" data-toggle="modal"data-target="#btn-edit" 
                                                 value = "'.$row[0].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Sửa&nbsp&nbsp;&nbsp; </button>
                                             </form>
-                                            <form action="'.$_SERVER['PHP_SELF'] .'" method="GET">
+                                            <form action="../handler/delete.php" method="GET">
                                                 <button type="submit" class="btn btn-danger btn-rounded btn-sm my-0"name="delete" data-toggle="modal"
                                                 value = "'.$row[0].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Xóa&nbsp&nbsp;&nbsp; </button>
                                             </form>
                                             
                                         </td>
                                         <td>' . $i . '</td>
-                                        <td>' . $row[1] . '</td>
-                                        <td>' . $row[2] . '</td>
-                                        <td>' . $row[3] . '</td>
-                                        <td><pre>' . $row[4] . '</pre></td>
-
-                                        <td>' . $row[8] . '</td>
-                                        <td><pre>' . $row[5] . '</pre></td>
                                         <td>
-                                         <img src="../../../images/' . $row[5] . '"></td>
+                                            <img src="../../../images/' . $row['image'] . '">
+                                        </td>
+                                        <td>' . $row['name'] . '</td>
+                                        <td>' . $row['category'] . '</td>
+                                        <td>' . $row['price'] . '</td>
+                                        <td>' . $row['brief description'] . '</td>
+
+                                        <td>
+                                            ' . $row_details['screen'] . '
+                                        <td>
+                                            ' . $row_details['camera'] . '
+                                        </td>
+                                        <td>
+                                            ' . $row_details['cpu'] . '
+                                        </td>
+                                        <td>
+                                            ' . $row_details['sim'] . '
+                                        </td>
+                                        <td>
+                                            ' . $row_details['pin'] . '
+                                        </td>
+                                        <td>
+                                            ' . $row_details['ram'] . '
+                                        </td>
+                                        <td>
+                                            ' . $row_details['rom'] . '
+                                        </td>
+                                        <td>' . $row['quantityInStock'] . '</td>
+                                        
                                     </tr>';
                                     $i++;
                                 }
                              include('../handler/add_product.php'); 
-                             include('../handler/delete.php');    
+                            //  include('../handler/delete.php');    
                             //   include('../handler/edit.php');                
                         ?>
                                 <!-- lồng vòng for của php vào để duyệt database -->
