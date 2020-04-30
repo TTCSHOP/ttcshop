@@ -7,6 +7,7 @@ include('../includes/data.php');
        
     }
     else{
+        // xli add_cart
         $user_id = $_COOKIE['userId'];
         if(isset($_GET['add_cart'])){
             $id= $_GET['add_cart'];
@@ -19,8 +20,19 @@ include('../includes/data.php');
             $product_in_cart = mysqli_fetch_array($check_in_cart);// cho sp nếu có trong giỏ hàng vào mảng
             
             if($product_in_cart){
+                $result_quantiyInStock = mysqli_query($connect,"SELECT * FROM products WHERE id = '$id'");// ktra sl tồn kho
+                $quantity = mysqli_fetch_array($result_quantiyInStock);
                 $amount_in_cart = $product_in_cart['amount'];// sl sp trong giỏ hàng hiện có
-                $amount+= $amount_in_cart;
+                if(($amount_in_cart+$amount)> $quantity['quantityInStock']){
+                    $amount = $amount_in_cart;
+                    echo '<script language="javascript">';
+                    echo 'alert("Sản phẩm không còn đủ số lượng!")';
+                    echo '</script>';
+                }
+                else{
+                    $amount+= $amount_in_cart;
+                }
+               
                 // echo $amount_in_cart;
                 $replace = mysqli_query($connect,"UPDATE cart SET amount = $amount WHERE product_id = '$id'");
                 if($replace){
@@ -52,9 +64,16 @@ include('../includes/data.php');
             }
             $check_in_cart = mysqli_query($connect,"SELECT * FROM cart WHERE product_id = '$id' AND user_id = '$user_id'");// ktra xem giỏ hàng có sp đang xem hay ko
             $product_in_cart = mysqli_fetch_array($check_in_cart);// cho sp nếu có trong giỏ hàng vào mảng
-            
+            $result_quantiyInStock = mysqli_query($connect,"SELECT * FROM products WHERE id = '$id'");// ktra sl tồn kho
+            $quantity = mysqli_fetch_array($result_quantiyInStock);
             if($product_in_cart){
-                $amount_in_cart = $product_in_cart['amount'];// sl sp trong giỏ hàng hiện có
+                // $amount_in_cart = $product_in_cart['amount'];// sl sp trong giỏ hàng hiện có
+                if($amount> $quantity['quantityInStock']){
+                    echo '<script language="javascript">';
+                    echo 'alert("Sản phẩm không còn đủ số lượng!")';
+                    echo '</script>';
+                }
+                else{
                 // echo $amount_in_cart;
                 $replace = mysqli_query($connect,"UPDATE cart SET amount = $amount WHERE product_id = '$id'");
                 if($replace){
@@ -65,6 +84,7 @@ include('../includes/data.php');
                 }
             }
         }
+    }
          if(isset($_POST['delete_in_cart'])){
            
 
