@@ -10,25 +10,35 @@ include('../includes/data.php');
         $passwordConfirmation = trim($_POST['passwordConfirmation']);
         $isPassed = true;
         if(trim($username) == ''){
-            header("Location:./sign_up.php?error=1");
+            echo '<script language="javascript">';
+            echo 'alert("Chú ý:  Không được để trống!")';
+            echo '</script>';
             $isPassed = false;
         }
         if(trim($email) == ''){
-            header("Location:./sign_up.php?error=1");
+            echo '<script language="javascript">';
+            echo 'alert("Chú ý:  Không được để trống!")';
+            echo '</script>';
             $isPassed = false;
         }
         if(trim($password) == ''&& strlen($password)>6){
-            header("Location:./sign_up.php?error=1");
+            echo '<script language="javascript">';
+            echo 'alert("Chú ý: Không được để trống, mật khẩu phải trên 6 kí tự!")';
+            echo '</script>';
             $isPassed = false;
         }
         if(trim($passwordConfirmation) == ''){
-            header("Location:./sign_up.php?error=1");
+            echo '<script language="javascript">';
+                    echo 'alert("Chú ý: Không được để trống!")';
+                    echo '</script>';
             $isPassed = false;
         }
 
         else{
             if($password!= $passwordConfirmation){
-                header("Location:./sign_up.php?error=1");
+                echo '<script language="javascript">';
+                echo 'alert("Chú ý: Xác nhận mật khẩu chưa chính xác!")';
+                echo '</script>';
                 $isPassed = false;
             }
         }
@@ -44,7 +54,9 @@ include('../includes/data.php');
             $num = mysqli_num_rows($result);
             // $num_user = mysqli_num_rows($check_username);
             if($num >0){
-                header("Location:./sign_up.php?error=1");
+                echo '<script language="javascript">';
+                echo 'alert("Chú ý: email này đã tồn tại!")';
+                echo '</script>';
             }
             else{
                  $result = mysqli_query($connect,"INSERT INTO users(name,email,password,authorization,dateModified) VALUES('$username','$email','$password','1',NOW())");
@@ -56,7 +68,9 @@ include('../includes/data.php');
                     exit();
                 }
                 else{
-                    header("Location:./sign_up.php?error=1");
+                    echo '<script language="javascript">';
+                    echo 'alert("Chú ý:  Không thành công!")';
+                    echo '</script>';
                 }
             }
             
