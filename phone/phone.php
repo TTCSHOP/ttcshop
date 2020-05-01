@@ -27,9 +27,13 @@ for ($i = 1; $i <= 8; $i++) {
             <div class="card-body">
                     <h5 class="card-title" style="color:black">' . $row[$i]['name'] . '</h5></a>' .
                     '<div class=row>'.
-            '<h5 class="price col-6" style="color:#86bd57">' . $row[$i]['price'] . '<sup>đ</sup></h5>' .
-            '<h6 class="price col-6" style="color:red"><del>' . ($row[$i][2]+1000000) . '</del></h6>'.
-            '</div>'.
+                        '<h5 class="price col-7" style="color:#86bd57">' .
+                        floor($row[$i]['price']/1000000) .'.'.   $row[$i]['price']%1000000/1000 .'.'. '000' .
+                        '<sup>đ</sup></h5>' .
+                        '<h6 class="price " style="color:red"><del>' .
+                        floor($row[$i]['price']/1000000 + 2)  .'.'.   $row[$i]['price']%1000000/1000 .'.'. '000' .'<sup>đ</sup></h5>' .
+                         '</del></h6>'.
+                        '</div>'.
             '<p ><small>' . $row[$i]['brief description'] . '</small> </p>
                     
                 </div>
@@ -54,25 +58,30 @@ echo '</div></div>';
 // xử lý form ở đây -> tự viết :D
 
 $row[10] = null;
-echo '<div class=" container mt-2 " id="content">';
+echo '<div class="card-group container mt-2" id="content">';
 echo '<div class="content-card d-flex justify-content-between flex-wrap">';
-$result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock>0");
+$result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >0");
 for ($i = 1; $i <= 8; $i++) {
-    
+    // $result = mysqli_query($connect, "SELECT * FROM products");
 
     $row[$i] =  mysqli_fetch_array($result);
 
     echo
         '<div class="card mb-3 mr-ml-1" style="width: 270px;">
-        <a  href="./phone/add_cart.php?buynow=' . $row[$i][0] . '">
-            <img src="./images/' . $row[$i]['image'] . '" class="card-img-top" alt="..." >
-        
+            <a  href="./phone/add_cart.php?buynow=' . $row[$i][0] . '">
+                <img src="./images/' . $row[$i]['image'] . '" class="card-img-top" alt="..." >
+            
+           
             <div class="card-body">
-                    <h5 class="card-title"style="color:black">' . $row[$i]['name'] . '</h5></a>' .
+                    <h5 class="card-title" style="color:black">' . $row[$i]['name'] . '</h5></a>' .
                     '<div class=row>'.
-            '<h5 class="price col-6"style="color:#86bd57">' . $row[$i]['price'] . '<sup>đ</sup></h5>' .
-            '<h6 class="price col-6"style="color:red"><del>' . ($row[$i][2]+1000000) . '</del></h6>'.
-            '</div>'.
+                        '<h5 class="price col-md-7" style="color:#86bd57">' .
+                        floor($row[$i]['price']/1000000) .'.'.   $row[$i]['price']%1000000/1000 .'.'. '000' .
+                        '<sup>đ</sup></h5>' .
+                        '<h6 class="price " style="color:red"><del>' .
+                        floor($row[$i]['price']/1000000 + 2)  .'.'.   $row[$i]['price']%1000000/1000 .'.'. '000' .'<sup>đ</sup></h5>' .
+                         '</del></h6>'.
+                        '</div>'.
             '<p ><small>' . $row[$i]['brief description'] . '</small> </p>
                     
                 </div>
@@ -80,7 +89,9 @@ for ($i = 1; $i <= 8; $i++) {
                     <div class="card card-body bg-primary text-light">' . $row[$i][4] . ' </div>
                         
                 </div>
-            </div>';
+            </div>
+            ';
+            
 }
 echo '</div></div>';
 ?>

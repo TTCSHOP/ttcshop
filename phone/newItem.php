@@ -202,7 +202,10 @@ $result = mysqli_query($connect, "SELECT * FROM products");
                                                
                                                 <div class="thumb-content">
                                                     <h4>' . $row[$i][1] . '</h4>
-                                                    <p class="item-price"><strike>$400.00</strike> <span>' . $row[$i]['price'] . '<sup>đ</sup></span></p>
+                                                    <h4 class="item-price">
+                                                    <strike>'.floor($row[$i]['price']/1000000 + 2)  .'.'.   $row[$i]['price']%1000000/1000 .'.'. '000' .'<sup>đ</sup></strike> 
+                                               <span>' . floor($row[$i]['price']/1000000) .'.'.   $row[$i]['price']%1000000/1000 .'.'. '000' .
+                                               '<sup>đ</sup>' .'</span></h4>
                                                     <div class="star-rating">
                                                         <ul class="list-inline">
                                                             <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -237,7 +240,10 @@ $result = mysqli_query($connect, "SELECT * FROM products");
                                                
                                                 <div class="thumb-content">
                                                     <h4>' . $row[$i]['name'] . '</h4>
-                                                    <p class="item-price"><strike>$400.00</strike> <span>' . $row[$i]['price'] . '<sup>đ</sup></span></p>
+                                                    <h4 class="item-price">
+                                                         <strike>'.floor($row[$i]['price']/1000000 + 2)  .'.'.   $row[$i]['price']%1000000/1000 .'.'. '000' .'<sup>đ</sup></strike> 
+                                                    <span>' . floor($row[$i]['price']/1000000) .'.'.   $row[$i]['price']%1000000/1000 .'.'. '000' .
+                                                    '<sup>đ</sup>' .'</span></h4>
                                                     <div class="star-rating">
                                                         <ul class="list-inline">
                                                             <li class="list-inline-item"><i class="fa fa-star"></i></li>
