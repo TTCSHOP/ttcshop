@@ -99,8 +99,8 @@ include('../includes/header.php');
                                     //     $i++;
                                     // }
                                 }
-                             include('../handler/add_product.php'); 
-                             include('../handler/delete.php');    
+                            //  include('../handler/add_product.php'); 
+                            //  include('../handler/delete.php');    
                             //   include('../handler/edit.php');                
                         ?>
                                 <!-- lồng vòng for của php vào để duyệt database -->
