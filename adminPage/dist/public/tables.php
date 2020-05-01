@@ -78,6 +78,10 @@ include('../includes/header.php');
                                     echo
                                         '<tr>
                                         <td >
+                                            <form action ="../handler/view.php" method="GET">
+                                                <button type="submit" class="btn btn-info btn-rounded btn-sm my-0 mb-2 mt-2"style="background-color: rgb(163, 165, 43);"name="view" data-toggle="modal"data-target="#btn-edit" 
+                                                value = "'.$row[0].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Xem&nbsp&nbsp;&nbsp; </button>
+                                            </form>
                                             <form action ="../handler/edit.php" method="GET">
                                                 <button type="submit" class="btn btn-info btn-rounded btn-sm my-0 mb-2"name="edit" data-toggle="modal"data-target="#btn-edit" 
                                                 value = "'.$row[0].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Sửa&nbsp&nbsp;&nbsp; </button>
@@ -86,7 +90,8 @@ include('../includes/header.php');
                                                 <button type="submit" class="btn btn-danger btn-rounded btn-sm my-0"name="delete" data-toggle="modal"
                                                 value = "'.$row[0].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Xóa&nbsp&nbsp;&nbsp; </button>
                                             </form>
-                                            
+                                          
+                                           
                                         </td>
                                         <td>' . $i . '</td>
                                         <td>
