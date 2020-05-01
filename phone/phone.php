@@ -22,13 +22,13 @@ for ($i = 1; $i <= 8; $i++) {
         '<div class="card mb-3 mr-ml-1" style="width: 270px;">
             <a  href="./phone/add_cart.php?buynow=' . $row[$i][0] . '">
                 <img src="./images/' . $row[$i]['image'] . '" class="card-img-top" alt="..." >
-            </a>
+            
            
             <div class="card-body">
-                    <h5 class="card-title">' . $row[$i]['name'] . '</h5>' .
+                    <h5 class="card-title" style="color:black">' . $row[$i]['name'] . '</h5></a>' .
                     '<div class=row>'.
-            '<h5 class="price col-6">' . $row[$i]['price'] . '<sup>đ</sup></h5>' .
-            '<h6 class="price col-6"><del>' . $row[$i][2] . '</del></h6>'.
+            '<h5 class="price col-6" style="color:#86bd57">' . $row[$i]['price'] . '<sup>đ</sup></h5>' .
+            '<h6 class="price col-6" style="color:red"><del>' . ($row[$i][2]+1000000) . '</del></h6>'.
             '</div>'.
             '<p ><small>' . $row[$i]['brief description'] . '</small> </p>
                     
@@ -37,7 +37,9 @@ for ($i = 1; $i <= 8; $i++) {
                     <div class="card card-body bg-primary text-light">' . $row[$i][4] . ' </div>
                         
                 </div>
-            </div>';
+            </div>
+            ';
+            
 }
 echo '</div></div>';
 ?>
@@ -66,10 +68,10 @@ for ($i = 1; $i <= 8; $i++) {
             <img src="./images/' . $row[$i]['image'] . '" class="card-img-top" alt="..." >
         </a>
             <div class="card-body">
-                    <h5 class="card-title">' . $row[$i]['name'] . '</h5>' .
+                    <h5 class="card-title"style="color:black">' . $row[$i]['name'] . '</h5>' .
                     '<div class=row>'.
-            '<h5 class="price col-6">' . $row[$i]['price'] . '<sup>đ</sup></h5>' .
-            '<h6 class="price col-6"><del>' . $row[$i][2] . '</del></h6>'.
+            '<h5 class="price col-6"style="color:#86bd57">' . $row[$i]['price'] . '<sup>đ</sup></h5>' .
+            '<h6 class="price col-6"style="color:red"><del>' . ($row[$i][2]+1000000) . '</del></h6>'.
             '</div>'.
             '<p ><small>' . $row[$i]['brief description'] . '</small> </p>
                     
