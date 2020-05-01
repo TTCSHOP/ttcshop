@@ -95,6 +95,10 @@ if (!isset($_COOKIE['userId'])) {
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Chi tiết đơn hàng
                         </a>
+                        <a class="nav-link" href="../public/admin_manager.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Quản trị viên
+                        </a>
 
                     </div>
                     <div class="sb-sidenav-footer">
