@@ -46,10 +46,7 @@
                             $current = mysqli_fetch_array($result_sign);
                             echo ' <a class="dropdown-item" href="admin/log_out.php"><i class="fas fa-sign-in-alt"></i>Đăng xuất</a>';
                         }
-                        // else{
-                        //     echo '<a class="dropdown-item" href="user/sign_in.php"><i class="fas fa-user-plus"></i>Đăng nhập</a>';
-                        //     echo '<a class="dropdown-item" href="user/sign_up.php"><i class="fas fa-user-plus"></i>Đăng kí</a>';
-                        // }
+                       
                     ?>
                 </div>
             </li>
@@ -69,22 +66,6 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-ad"></i></div>
                             Quảng cáo</a>
 
-                        <!-- <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                    ></a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                    ></a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
-                                </div>
-                            </nav>
-                        </div> -->
                         <div class="sb-sidenav-menu-heading">Edit</div>
 
                         <a class="nav-link" href="./public/tables.php">
@@ -94,6 +75,10 @@
                         <a class="nav-link" href="./public/orderdetails.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Chi tiết đơn hàng
+                        </a>
+                        <a class="nav-link" href="./public/admin_manager.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Quản trị viên
                         </a>
 
                     </div>
