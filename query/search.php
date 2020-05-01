@@ -23,23 +23,22 @@
                         $row[$j] =  mysqli_fetch_array($result);
                     
                         echo
-                            '<div class="card mb-3 mr-ml-1" style="width: 270px;">
-                                <img src="../images/'.$row[$j][5].'" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                        <h5 class="card-title">' . $row[$j][1] . '</h5>' .
-                                '<h5 class="price text-danger">' . $row[$j][2] . '</h5>' .
-                                '<p class="card-text">' . $row[$j][3] . ' </p>
-                                        <form action="../phone/add_cart.php" method="GET">
-                                            <button type="submit" name="buynow" value = "'.$j.'" class="btn btn-primary" data-toggle="collapse">Buy now</button>
-                                        </form>
-                                    </div>
-                                    <div class="collapse multi-collapse " id="desphone' . $j . '">
-                                        <div class="card card-body bg-primary text-light">' . $row[$j][4] . ' </div>
-                                            
-                                    </div>
-                                </div>';
+                        '<div class="card mb-3 mr-ml-1" style="width: 270px;">
+                        <a  href="../phone/add_cart.php?buynow=' . $row[$j][0] . '">
+                            <img src="../images/' . $row[$j]['image'] . '" class="card-img-top" alt="..." >
+                        
+                            <div class="card-body">
+                                    <h5 class="card-title"style="color:black">' . $row[$j]['name'] . '</h5></a>' .
+                                    '<div class=row>'.
+                            '<h5 class="price col-6"style="color:#86bd57">' . $row[$j]['price'] . '<sup>đ</sup></h5>' .
+                            '<h6 class="price col-6"style="color:red"><del>' . ($row[$j][2]+1000000) . '</del></h6>'.
+                            '</div>'.
+                            '<p ><small>' . $row[$j]['brief description'] . '</small> </p>
+                                    
+                                </div>
                                
-                    }
+                            </div>';
+                }
                     echo '</div></div>';
                 }
                 else{
