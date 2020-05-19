@@ -58,9 +58,9 @@ if (isset($_COOKIE['userId'])) {
                     <div class="wrapper row">
                         <div class="preview col-md-6">
                             <div class="preview-pic tab-content">
-                                <div class="tab-pane active" id="pic-1"> <img src="../images/<?php echo $row_details['image1'] ?>" style="height:70vh" /></div>
-                                <div class="tab-pane" id="pic-2"><img src="../images/<?php echo $row_details['image2'] ?>" style="height:70vh" /></div>
-                                <div class="tab-pane" id="pic-3"><img src="../images/<?php echo $row_details['image3'] ?>" style="height:70vh" /></div>
+                                <div class="tab-pane active" id="pic-1"> <img src="../images/<?php echo $row_details['image1'] ?>" style="height:65vh;" /></div>
+                                <div class="tab-pane" id="pic-2"><img src="../images/<?php echo $row_details['image2'] ?>" style="height:65vh;" /></div>
+                                <div class="tab-pane" id="pic-3"><img src="../images/<?php echo $row_details['image3'] ?>" style="height:65vh;" /></div>
                                 <!-- <div class="tab-pane" id="pic-4"><img src="../images/<?php echo $row['image'] ?>" /></div>
                                 <div class="tab-pane" id="pic-5"><img src="../images/<?php echo $row['image'] ?>" /></div> -->
                             </div>
@@ -86,9 +86,9 @@ if (isset($_COOKIE['userId'])) {
                             </div>
                             <p class="product-description"><?php echo $row['brief description'] ?></p>
                             <h4 class="price">Giá niêm yết: <span><?php echo  ' <del> ' .
-                                floor($row['price'] / 1000000 + 2)  . '.' .   $row['price'] % 1000000 / 1000 . '.' . '000'  .
-                                '</del>' ?> &nbsp;đ</span></h4>
-                            <h4 class="price">Giá khuyến mãi: <span><?php echo floor($row['price'] / 1000000) . '.' .   $row['price'] % 1000000 / 1000 . '.' . '000' ?> &nbsp;đ</span></h4>
+                                                                        floor($row['price'] / 1000000 + 2)  . '.' .   $row['price'] % 1000000 / 1000 . '.' . '000'  .
+                                                                        '</del>' ?> &nbsp;đ</span></h4>
+                            <h4 class="price text-danger">Giá khuyến mãi: <span><?php echo floor($row['price'] / 1000000) . '.' .   $row['price'] % 1000000 / 1000 . '.' . '000' ?> &nbsp;đ</span></h4>
 
                             <p class="vote"><strong>91%</strong> người mua hài lòng về sản phẩm! <strong>(87 votes)</strong></p>
 
@@ -98,6 +98,22 @@ if (isset($_COOKIE['userId'])) {
 
                                     <button type="submit" name="add_cart" value="<?php echo $id ?>" class="add-to-cart btn btn-default">Thêm vào giỏ hàng</button>
                                 </form>
+                            </div>
+                            <div class="f-left mt-4 ">
+                                <a class="btn btn-success " style="width:49.5%;display:inline-block;">
+                                    <strong>TRẢ GÓP 0%</strong>
+                                    <br>
+                                    (Xét duyệt qua điện thoại)
+                                </a>
+                                <a class="btn btn-primary" onclick="tragop()" style="width:49.5%;display:inline-block;">
+                                    <strong>TRẢ GÓP 0% QUA THẺ</strong>
+                                    <br>
+                                    (Visa, Master Card, JCB)
+                                </a>
+                            </div>
+                            <div style="margin-top: 10px; text-align: center; color: #3c3d41;float: left;width: 100%;">
+                                <a href="https://cellphones.com.vn/tra-gop/mpos" target="_blank">Trả góp 0% với thẻ tín dụng tại cửa hàng - Xem chi tiết </a><br>
+                                Gọi miễn phí: <b>1800.2097</b> 
                             </div>
                         </div>
                     </div>

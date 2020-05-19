@@ -26,10 +26,36 @@
             <a class="navbar-brand t" href="../index.php">
                 <strong>TTC Shop</strong> </a>
 
-            <!-- <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button> -->
+        
+               
+                <div class="col-md-6 col-lg-7 text-center text-md-right">
+                   
+                   
+                    <a class="fb-ic">
+                        <i class="fab fa-facebook-f white-text mr-4 fa-lg"> </i>
+                    </a>
+                   
+                    <a class="tw-ic">
+                        <i class="fab fa-twitter white-text mr-4 fa-lg"> </i>
+                    </a>
+                 
+                    <a class="gplus-ic">
+                        <i class="fab fa-google-plus-g white-text mr-4 fa-lg"> </i>
+                    </a>
+                   
+                    <a class="li-ic">
+                        <i class="fab fa-linkedin-in white-text mr-4 fa-lg"> </i>
+                    </a>
+                   
+                    <a class="ins-ic">
+                        <i class="fab fa-instagram white-text fa-lg"> </i>
+                    </a>
 
+                </div>
+               
 
-           
+            
+
     </div>
     </nav>
 
