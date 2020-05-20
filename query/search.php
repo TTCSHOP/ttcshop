@@ -8,8 +8,8 @@
         }
         else{
             $result = mysqli_query($connect,"
-            SELECT * FROM products WHERE  name LIKE '%$searchtxt%'
-                OR category LIKE '%$searchtxt%';
+            SELECT * FROM products WHERE  (name LIKE '%$searchtxt%'
+                OR category LIKE '%$searchtxt%')AND quantityInStock>=0;
                  ");
             if($result){
                 include('../includes/head.php');     
