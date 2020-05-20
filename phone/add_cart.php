@@ -167,7 +167,8 @@ if (isset($_COOKIE['userId'])) {
 
                     </tbody>
                 </table>
-                <button type="button" class="btn border-info rounded-pill " data-toggle="modal" data-target="#thanks">
+                <div class="item"></div>
+                <button type="button"  class="btn border-info rounded-pill " data-toggle="modal" data-target="#thanks">
                 More
                 </button>
 
@@ -194,7 +195,7 @@ if (isset($_COOKIE['userId'])) {
                     </div>
                 </div>
             </div>
-
+<!-- abc -->
 
         </div>
 
