@@ -1,10 +1,4 @@
-
-<?php
-include('./includes/head_index.php');
-?>
-<div class="body">
-    <!-- quảng cáo -->
-    <div class="ads ml-5 ">
+<div class="ads ml-5 ">
         <div class="container-fluid d-inline-flex mt-3">
             <div class="col-7  ml-4 mt-3">
                 <div id="demo" class="carousel slide" data-ride="carousel">
@@ -20,19 +14,19 @@ include('./includes/head_index.php');
                     <!-- The slideshow -->
                     <div class="carousel-inner mt-4">
                         <div class="carousel-item active">
-                            <img src="./images/ad_1.png" style="width: 100%;">
+                            <img src="../images/ad_1.png" style="width: 100%;">
                         </div>
                         <div class="carousel-item">
-                            <img src="./images/ad_2.jpg" style="width: 100%;">
+                            <img src="../images/ad_2.jpg" style="width: 100%;">
                         </div>
                         <div class="carousel-item">
-                            <img src="./images/ad_3.jpg" style="width: 100%;">
+                            <img src="../images/ad_3.jpg" style="width: 100%;">
                         </div>
                         <div class="carousel-item">
-                            <img src="./images/ad6.jpg" class="d-block w-100">
+                            <img src="../images/ad6.jpg" class="d-block w-100">
                         </div>
                         <div class="carousel-item">
-                            <img src="./images/ad7.jpg" class="d-block w-100" alt="...">
+                            <img src="../images/ad7.jpg" class="d-block w-100" alt="...">
                         </div>
                     </div>
 
@@ -46,10 +40,10 @@ include('./includes/head_index.php');
                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner mt-4">
                         <div class="carousel-item active">
-                            <img src="./images/ad4.jpg" class="d-block w-100" alt="...">
+                            <img src="../images/ad4.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="./images/ad5.jpg" class="d-block w-100" alt="...">
+                            <img src="../images/ad5.jpg" class="d-block w-100" alt="...">
                         </div>
 
 
@@ -64,7 +58,7 @@ include('./includes/head_index.php');
                     </a>
                 </div>
                 <div class="media mt-2">
-                    <img src="./images/ad22.jpg" style="width:100%; ">
+                    <img src="../images/ad22.jpg" style="width:100%; ">
                 </div>
             </div>
 
@@ -73,19 +67,6 @@ include('./includes/head_index.php');
 
     </div>
     <div class="container mt-3">
-        <img src="./images/ads3.jpg" style="width:100% ">
+        <img src="../images/ads3.jpg" style="width:100% ">
 
     </div>
-  <!-- hot sale -->
-    <?php
-    include_once('phone/newItem.php');
-    ?>
-    <!-- các mẫu điện thoại -->
-    <?php
-    include('phone/phone.php');
-    ?>
-
-    </body>
-    <?php include('./includes/foot.php'); ?>
-
-    </html>
