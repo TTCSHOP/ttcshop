@@ -52,7 +52,18 @@ echo '</div></div>';
     <img src="images/footads.jpg">
 </div> -->
 <div class="container mt-3" >
-        <img src="./images/ads1.jpg" alt=""style="width:100% ">
+<?php 
+            $qc5 = mysqli_query($connect,"SELECT * FROM advertisement WHERE position =5 ORDER BY dateModified DESC");
+           
+            for($i=0; $i<1;$i++){
+                $row_qc5 = mysqli_fetch_array($qc5);
+                echo '
+                <img src="./images/'.$row_qc5['image'].'" alt=""style="width:100% ">
+
+                ';
+            }
+        ?>
+        <!-- <img src="./images/ads1.jpg" alt=""style="width:100% "> -->
 
     </div>
 <?php

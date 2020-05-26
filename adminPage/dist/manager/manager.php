@@ -1,14 +1,28 @@
 <?php
     include('./includes/data.php');
-    $product = mysqli_query($connect, "SELECT * FROM products");
-    $total_product=0;// tính tổng mặt hàng
-    while ($product_arr =  mysqli_fetch_array($product)) {
-        $total_product += $product_arr['quantityInStock'];
-    }
+    $product = mysqli_query($connect, "SELECT * FROM categories");
+    $total_product= mysqli_num_rows($product);// tính tổng loại mặt hàng
+    
     // tính tổng số tiền đơn hàng p/s: còn chỉnh sửa
-    $order = mysqli_query($connect, "SELECT * FROM orderdetails");
-    $total_Money=0;
-    while ($order_arr =  mysqli_fetch_array($order)) {
-        $total_Money+= $order_arr['totalMoney'];
-    }
+    // $order = mysqli_query($connect, "SELECT * FROM orderdetails");
+
+    // tăng trưởng
+    // Tháng hiện tại
+    $total = mysqli_query($connect,"
+        SELECT SUM(totalMoney)
+        FROM orders o
+        JOIN orderdetails od
+        ON o.id = od.id
+        WHERE MONTH(o.dateModified) = 
+                (SELECT MONTH(MAX(o.dateModified))
+                FROM orders)
+        AND YEAR(o.dateModified) = 
+                (SELECT YEAR(MAX(o.dateModified))
+                FROM orders)
+    ");
+    $row = mysqli_fetch_array($total);
+    $total_Money = $row['0'];
+//    lãi
+    $lai = $total_Money - $total_Money*0.7;
+    
 ?>

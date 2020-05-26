@@ -1,6 +1,7 @@
 
 <?php
 include('./includes/head_index.php');
+include('./includes/data.php');
 ?>
 <div class="body">
     <!-- quảng cáo -->
@@ -19,7 +20,28 @@ include('./includes/head_index.php');
 
                     <!-- The slideshow -->
                     <div class="carousel-inner mt-4">
-                        <div class="carousel-item active">
+                    <?php 
+                        $qc1 = mysqli_query($connect,"SELECT * FROM advertisement WHERE position =1 ORDER BY dateModified DESC");
+                        
+                        for($i=0; $i<4;$i++){
+                            $row_qc1 = mysqli_fetch_array($qc1);
+                            if($i==0){
+                                echo '
+                                    <div class="carousel-item active">
+                                        <img src="./images/'.$row_qc1['image'].'" style="width: 100%;">
+                                    </div>
+                                ';
+                            }
+                            else{
+                                echo '
+                                    <div class="carousel-item">
+                                        <img src="./images/'.$row_qc1['image'].'" style="width: 100%;">
+                                    </div>
+                                ';
+                            }
+                        }
+                    ?>
+                        <!-- <div class="carousel-item active">
                             <img src="./images/ad_1.png" style="width: 100%;">
                         </div>
                         <div class="carousel-item">
@@ -33,7 +55,7 @@ include('./includes/head_index.php');
                         </div>
                         <div class="carousel-item">
                             <img src="./images/ad7.jpg" class="d-block w-100" alt="...">
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- Left and right controls -->
@@ -45,12 +67,33 @@ include('./includes/head_index.php');
             <div class="col-4">
                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner mt-4">
-                        <div class="carousel-item active">
+                    <?php 
+                        $qc2 = mysqli_query($connect,"SELECT * FROM advertisement WHERE position =2 ORDER BY dateModified DESC");
+                        
+                        for($i=0; $i<2;$i++){
+                            $row_qc2 = mysqli_fetch_array($qc2);
+                            if($i==0){
+                                echo '
+                                    <div class="carousel-item active">
+                                        <img src="./images/'.$row_qc2['image'].'" class="d-block w-100" alt="...">
+                                    </div>
+                                ';
+                            }
+                            else{
+                                echo '
+                                <div class="carousel-item">
+                                    <img src="./images/'.$row_qc2['image'].'" class="d-block w-100" alt="...">
+                                </div>
+                            ';
+                            }
+                        }
+                    ?>
+                        <!-- <div class="carousel-item active">
                             <img src="./images/ad4.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
                             <img src="./images/ad5.jpg" class="d-block w-100" alt="...">
-                        </div>
+                        </div> -->
 
 
                     </div>
@@ -64,7 +107,16 @@ include('./includes/head_index.php');
                     </a>
                 </div>
                 <div class="media mt-2">
-                    <img src="./images/ad22.jpg" style="width:100%; ">
+                <?php 
+                        $qc3 = mysqli_query($connect,"SELECT * FROM advertisement WHERE position =3 ORDER BY dateModified DESC");
+                        $row_qc3 = mysqli_fetch_array($qc3);
+                        for($i=0; $i<1;$i++){
+                            echo '
+                                <img src="./images/'.$row_qc3['image'].'" style="width:100%; ">
+                            ';
+                        }
+                    ?>
+                    <!-- <img src="./images/ad22.jpg" style="width:100%; "> -->
                 </div>
             </div>
 
@@ -73,7 +125,17 @@ include('./includes/head_index.php');
 
     </div>
     <div class="container mt-3">
-        <img src="./images/ads3.jpg" style="width:100% ">
+        <?php 
+            $qc4 = mysqli_query($connect,"SELECT * FROM advertisement WHERE position =4 ORDER BY dateModified DESC");
+            
+            for($i=0; $i<1;$i++){
+                $row_qc4 = mysqli_fetch_array($qc4);
+                echo '
+                <img src="./images/'.$row_qc4['image'].'" style="width:100% ">
+                ';
+            }
+        ?>
+        <!-- <img src="./images/ads3.jpg" style="width:100% "> -->
 
     </div>
   <!-- hot sale -->

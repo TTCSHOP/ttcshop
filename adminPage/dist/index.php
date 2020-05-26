@@ -99,7 +99,7 @@ if (!isset($_COOKIE['userId'])) {
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-primary text-white mb-4">
-                                <div class="card-body"><strong>Tổng số mặt hàng</strong></div>
+                                <div class="card-body"><strong>Tổng các loại mặt hàng</strong></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <!-- code php truy xuất số lượng mặt hàng -->
                                     <?php echo $total_product ?>
@@ -108,7 +108,7 @@ if (!isset($_COOKIE['userId'])) {
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-info text-white mb-4">
-                                <div class="card-body"><strong>Tổng thu</strong> </div>
+                                <div class="card-body"><strong>Tổng Doanh thu tháng gần nhất</strong> </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <!-- code php truy xuất số tiền bán hàng -->
                                     <?php echo floor($total_Money / 1000000)  . '.' .   $total_Money % 1000000 / 1000 . '.' . '000  VNĐ'  ; ?>
@@ -118,7 +118,7 @@ if (!isset($_COOKIE['userId'])) {
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-success text-white mb-4">
-                                <div class="card-body"><strong>Tổng chi</strong></div>
+                                <div class="card-body"><strong>Tổng chi tháng gần nhất</strong></div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <!-- code php truy xuất số tiền vốn nhập hàng -->
                                     <?php echo floor($total_Money*0.7 / 1000000)  . '.' .   $total_Money*0.7 % 1000000 / 1000 . '.' . '000  VNĐ'  ; ?>
@@ -127,9 +127,11 @@ if (!isset($_COOKIE['userId'])) {
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-danger text-white mb-4">
-                                <div class="card-body"><strong>Tăng trưởng hàng tháng %</strong> </div>
+                                <div class="card-body"><strong>Lãi tháng gần nhất</strong> </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <!-- code php truy xuất lãi tháng này so với lãi tháng trc -->
+                                    <?php echo floor($lai / 1000000)  . '.' .   $lai % 1000000 / 1000 . '.' . '000  VNĐ'  ; ?>
+
                                 </div>
                             </div>
                         </div>

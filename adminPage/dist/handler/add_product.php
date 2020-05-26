@@ -90,7 +90,21 @@ include('../includes/data.php');
                         </div>
                         <div class="form-group col-md-8">
                             <label for="recipient-name" class="col-form-label">Hãng sản phẩm</label>
-                            <input type="text" class="form-control" id="category" name = "phonecategory">
+                            <!-- <input type="text" class="form-control" id="category" name = "phonecategory"> -->
+                                <select id="cars" name = "phonecategory">
+                                <!-- lấy ra các hãng sp(category) -->
+                                <?php $category = mysqli_query($connect,"SELECT * FROM categories");
+                                      $total_category = mysqli_num_rows($category);
+                                     
+                                      for($i=0; $i<$total_category;$i++){
+                                        $row_category = mysqli_fetch_array($category);
+                                          echo'
+                                            <option value="'.$row_category['name'].'">'.$row_category['name'].'</option>
+                                          ';
+                                      }
+                                ?>
+                        
+                                </select>
                         </div>
                         <div class="form-group col-md-8">
                                 <label for="smartphoneName" class="col-form-label">Giá sản phẩm</label>
