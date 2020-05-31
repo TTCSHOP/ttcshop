@@ -16,9 +16,9 @@ include('./includes/data.php');
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 
     <script src="./bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/style.css"  >
 
-
+    
 
 </head>
 
@@ -28,39 +28,44 @@ include('./includes/data.php');
     <!-- Thanh nav -->
     <div class="header ">
 
-        <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg double-nav navbar-dark bg-info">
-            <div class="float-left">
-                <a href="index.php"> <img class="ml-5% mr-5% " src="images\logoWeb.png"></a>
-                <a class="navbar-brand t" href="index.php">
-                    <strong>TTC Shop</strong> </a>
-            </div>
+        <!--/.Navbar-->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-info">
+            <a href="index.php"> <img class="ml-5% mr-5% " src="images\logoWeb.png"></a>
+            <a class="navbar-brand t" href="index.php">
+                <strong>TTC Shop</strong> </a>
+
+            <!-- <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button> -->
 
 
-
-            <ul class="nav navbar-nav nav-flex-icons ">
+            <ul class="navbar-nav ml-3">
                 <li class="nav-item">
-
-                    <form action="./query/search.php" method="POST">
-                        <div class="input-group ml-5 " style="width: 40vw; ">
-                            <input type="text" class="form-control" style="width: 30vw" name="searchtext" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
-                            <div class="input-group-append">
-                                <button type="submit" name="search" class="btn btn-danger" id="button-addon2">Search</button>
-                            </div>
-                        </div>
-                    </form>
+                    
+                        <!-- <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"> -->
+                        
+                            <form action="./query/search.php" method="POST">
+                                <div class="input-group ml-5 " style="width: 40vw; ">
+                                    <input type="text" class="form-control" style="width: 30vw"  name="searchtext" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
+                                    <div class="input-group-append">
+                                    <button type="submit" name="search" class="btn btn-danger"id="button-addon2">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- <button class="btn btn-danger" type="button" id="button-addon2">Search</button> -->
+                       
+                    
                 </li>
-                <li class="nav-item  ">
-                    <div class="btn btn-info ml-5 col-md-5">
-                        <!-- <a class="text-dark " href="phone/cart.php" style="text-decoration: none;"><i class="fa fa-cart-plus"></i> Giỏ hàng</a> -->
-                        <a class="text-dark" href="phone/cart.php"><i class="fa fa-cart-plus"></i> <span class="clearfix d-none d-sm-inline-block">Giỏ hàng</span></a>
+
+
+                <li class="nav-item ">
+                    <div class="btn btn-info ml-5 ">
+                        <a class="text-dark " href="phone/cart.php" style="text-decoration: none;"><i class="fa fa-cart-plus"></i></i> Giỏ hàng</a>
                     </div>
+
                 </li>
 
                 <li class="nav-item ">
                     <div class="btn btn-info ">
-                        <a class="text-dark " href="./support/support.php"><i class="fas fa-question-circle text-dark"></i> <span class="clearfix d-none d-sm-inline-block">Support</span></a>
-
-                        <!-- <a class="text-dark " href="./support/support.php" style="text-decoration: none;"><i class="fas fa-question-circle text-dark"></i> Support</a> -->
+                        <a class="text-dark " href="./support/support.php" style="text-decoration: none;"><i class="fas fa-question-circle text-dark"></i> Support</a>
                     </div>
 
                 </li>
@@ -71,55 +76,27 @@ include('./includes/data.php');
                             <i class="far fa-user-circle"></i>Tài khoản
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <?php
-                            if (isset($_COOKIE['userId'])) {
+                        <?php
+                            	if(isset($_COOKIE['userId'])){
+                                    // nếu đăng nhập r in ra mh
+                                    $result = mysqli_query($connect,"SELECT name FROM users WHERE id = '{$_COOKIE['userId']}'");
+                                    $currentUser = mysqli_fetch_array($result);
+                                    echo ' <a class="dropdown-item" href="user/log_out.php"><i class="fas fa-sign-in-alt"></i>Đăng xuất</a>';
+                                }
+                                else{
+                                    echo '<a class="dropdown-item" href="user/sign_in.php"><i class="fas fa-user-plus"></i>Đăng nhập</a>';
+                                    echo '<a class="dropdown-item" href="user/sign_up.php"><i class="fas fa-user-plus"></i>Đăng kí</a>';
+                                }
+                        ?>
 
-                                $result = mysqli_query($connect, "SELECT name FROM users WHERE id = '{$_COOKIE['userId']}'");
-                                $currentUser = mysqli_fetch_array($result);
-                                echo ' <a class="dropdown-item" href="user/log_out.php"><i class="fas fa-sign-in-alt"></i>Đăng xuất</a>';
-                            } else {
-                                echo '<a class="dropdown-item" href="user/sign_in.php"><i class="fas fa-user-plus"></i>Đăng nhập</a>';
-                                echo '<a class="dropdown-item" href="user/sign_up.php"><i class="fas fa-user-plus"></i>Đăng kí</a>';
-                            }
-                            ?>
-
-
+                            <!-- <a class="dropdown-item" href="user/sign_up.php"><i class="fas fa-sign-in-alt"></i>Đăng kí</a>
+                            <a class="dropdown-item" href="user/sign_in.php"><i class="fas fa-user-plus"></i>Đăng nhập</a> -->
 
                         </div>
                     </div>
                 </li>
             </ul>
-        </nav>
+    </div>
+    </nav>
 
-        <!-- <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg double-nav navbar-dark bg-info">
-
-            <div class="float-left">
-                <a href="index.php"> <img class="ml-5% mr-5% " src="images\logoWeb.png"></a>
-                <a class="navbar-brand t" href="index.php">
-                    <strong>TTC Shop</strong> </a>
-            </div>
-          
-
-            <ul class="nav navbar-nav nav-flex-icons ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link"><i class="fa fa-envelope"></i> <span class="clearfix d-none d-sm-inline-block">Contact</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><i class="fa fa-comments-o"></i> <span class="clearfix d-none d-sm-inline-block">Support</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Account</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-            </ul>
-        </nav> -->
     </div>

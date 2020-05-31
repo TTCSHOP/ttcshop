@@ -35,8 +35,8 @@ include('../includes/header.php');
                                     <th>CPU</th>
                                     <th>Sim</th>
                                     <th>Thời lượng pin</th>
-                                    <th>Bộ nhớ ngoài</th>
-                                    <th>Bộ nhớ trong</th>
+                                    <th>RAM</th>
+                                    <th>ROM</th>
                                     <th>Số lượng</th>
                                     <!-- <th>Hình ảnh</th>
                                     <th>abc</th> -->
@@ -59,8 +59,8 @@ include('../includes/header.php');
                                     <th>CPU</th>
                                     <th>Sim</th>
                                     <th>Thời lượng pin</th>
-                                    <th>Bộ nhớ ngoài</th>
-                                    <th>Bộ nhớ trong</th>
+                                    <th>RAM</th>
+                                    <th>ROM</th>
                                     <th>Số lượng</th>
                                     
                                 </tr>
@@ -69,7 +69,7 @@ include('../includes/header.php');
                                 <?php
 
                                 // $row[10] = null;
-                                $result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >=0");
+                                $result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >0");
                                 $result_details = mysqli_query($connect, "SELECT * FROM productdetails WHERE isdeleted is NULL");
                                 
                                 $i=1;
