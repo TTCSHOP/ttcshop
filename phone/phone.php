@@ -13,7 +13,8 @@ $row[10] = null;
 echo '<div class="card-group container mt-2" id="content">';
 echo '<div class="content-card d-flex justify-content-between flex-wrap">';
 $result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >0");
-for ($i = 1; $i <= 8; $i++) {
+$num=mysqli_num_rows($result);
+for ($i = 1; $i <= $num; $i++) {
     // $result = mysqli_query($connect, "SELECT * FROM products");
 
     $row[$i] =  mysqli_fetch_array($result);
@@ -51,7 +52,18 @@ echo '</div></div>';
     <img src="images/footads.jpg">
 </div> -->
 <div class="container mt-3" >
-        <img src="./images/ads1.jpg" alt=""style="width:100% ">
+<?php 
+            $qc5 = mysqli_query($connect,"SELECT * FROM advertisement WHERE position =5 ORDER BY dateModified DESC");
+           
+            for($i=0; $i<1;$i++){
+                $row_qc5 = mysqli_fetch_array($qc5);
+                echo '
+                <img src="./images/'.$row_qc5['image'].'" alt=""style="width:100% ">
+
+                ';
+            }
+        ?>
+        <!-- <img src="./images/ads1.jpg" alt=""style="width:100% "> -->
 
     </div>
 <?php

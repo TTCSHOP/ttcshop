@@ -12,55 +12,67 @@
         
             $isPassed = true;
             if($phoneNumber ==''|| $address ==''){
-                header("Location:./infor_customer.php?error=1");
+                echo '<script language="javascript">';
+                echo 'alert("Không để trống thông tin!")';
+                echo '</script>';
                 $isPassed = false;
             }
             if($isPassed){
-                $insert_infor = mysqli_query($connect,"INSERT INTO orders(user_id,dateModified,phoneNumber,address)
-                VALUES('$userId',NOW(),'$phoneNumber','$address')");
-                if($insert_infor){
-                    include('../includes/head.php');
-                    echo '<div class="alert alert-success">
-                                <strong>Thành công!</strong> Đơn hàng của bạn sẽ sớm được giao
-                          </div>';
-                    // chuyển thông tin giỏ hàng sang orderdetails
-                    $get_order = mysqli_query($connect,"SELECT * FROM orders WHERE user_id = $userId");// lấy thông tin từ order
+       
+                    // xử lí bảng orders và orderdetails
+                    if(isset($_SESSION['cart'])){ 
+                        $insert_infor = mysqli_query($connect,"INSERT INTO orders(user_id,dateModified,phoneNumber,address)
+                        VALUES('$userId',NOW(),'$phoneNumber','$address')");
+                        $last_id = mysqli_insert_id($connect);
                    
-                    $get_order_array = mysqli_fetch_array($get_order);
-                    $orderID = $get_order_array['id'];
-                    // $insert_orderdetails = mysqli_query($connect,"INSERT INTO orderdetails(orderID,status)
-                    // VALUES('$orderID','Xác nhận đơn hàng')");// insert vào orderdetails
-                    $get_cart = mysqli_query($connect,"SELECT * FROM cart WHERE user_id = $userId");// lấy thông tin từ giỏ hàng
-                   
-                    $num_cart = mysqli_num_rows($get_cart);// số sp có trong giỏ hàng
-                    
-                    for($j=1; $j<=$num_cart;$j++){
-                        $get_cart_array = mysqli_fetch_array($get_cart);
-                        $product_id = $get_cart_array['product_id'];
-                        $amount = $get_cart_array['amount'];// lấy số lượng của sp có trong giỏ hàng
-                        $result_quantiyInStock = mysqli_query($connect,"SELECT * FROM products WHERE id = $product_id");// ktra sl tồn kho
-                        $quantity = mysqli_fetch_array($result_quantiyInStock);// lấy ra sl tồn kho
+                        foreach($_SESSION['cart'] as $id => $value) {
+                            $result_pro = mysqli_query($connect,"SELECT * FROM products WHERE id = $id");
+                            $row_pro = mysqli_fetch_array($result_pro);
+                            if($value['num']<= $row_pro['quantityInStock']){
+                                $amount = $value['num'];
+                                $quantity_remain = $row_pro['quantityInStock'] - $amount;
+                                // echo 'quan'.$quantity_remain.'<br>';
+                                $price = $row_pro['price'];
+                                // echo 'price'.$price.'<br>';
+                                mysqli_query($connect,"UPDATE `products` SET `quantityInStock` = '$quantity_remain' WHERE id = $id");
+                                $insert_orderdetails = mysqli_query($connect,"INSERT INTO orderdetails(product_id,amount,priceEach,orderID,status)
+                                VALUES('$id','$amount','$price','$last_id',NOW())");
+                                // if($insert_orderdetails){
+                                //     echo 'ok'.'<br>';
+                                // }
+                                // else{
+                                //     echo 'fail'.'<br>';
+                                // }
+                            }
+                            else{
 
-                        $totalMoney = $get_cart_array['totalMoney'];
-                        
-                        $insert_orderdetails = mysqli_query($connect,"INSERT INTO orderdetails(product_id,amount,totalMoney,orderID,status)
-                        VALUES('$product_id','$amount','$totalMoney','$orderID',NOW())");
-                        // cập nhật thông tin số lượng sp tồn kho
-                        $quantity_remain = $quantity['quantityInStock'] - $amount;// số sp còn lại sau khi đặt hàng
-                        mysqli_query($connect,"UPDATE `products` SET `quantityInStock` = '$quantity_remain' WHERE id = $product_id");
-                    }   
-                    
+                                echo '<script language="javascript">';
+                                echo 'alert("Không thành công! Sản phẩm'.$row['name'].' không còn đủ số lượng, vui lòng chọn lại số lượng!")';
+                                echo '</script>';
+                                exit();
+                            }
+
+                         }
+
+                    echo '<script language="javascript">';
+                    echo 'alert("Thành công! Đơn hàng của bạn sẽ sớm được giao")';
+                    echo '</script>';
                    
-                    // xóa giỏ hàng
-                    $delete = mysqli_query($connect,"DELETE FROM cart WHERE user_id= $userId");
+                    unset($_SESSION['cart']);
                     
                 }
                 else{
-                    echo "fail order";
+                    echo '<script language="javascript">';
+                    echo 'alert("Giỏ hàng của bạn đang trống,Vui lòng thêm sản phẩm vào giỏ hàng")';
+                    echo '</script>';
                 }
             }
-        
+        else{
+            // echo "fail order";
         }
     }
-  
+
+}
+
+
 ?>

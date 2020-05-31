@@ -173,15 +173,30 @@ include('../includes/data.php');
                        
                         <div class="form-group col-md-8">
                             <label class="col-form-label">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="smartphoneName" name = "name_edit" value="<?php echo $edit_arr[1]?>">
+                            <input type="text" class="form-control" id="smartphoneName" name = "name_edit" value="<?php echo $edit_arr['name']?>">
                         </div>
                         <div class="form-group col-md-8">
                             <label for="recipient-name" class="col-form-label">Hãng sản phẩm</label>
-                            <input type="text" class="form-control" id="category" name = "category_edit"value="<?php echo $edit_arr[7]?>">
+                            <!-- <input type="text" class="form-control" id="category" name = "category_edit"value="<?php echo $edit_arr['category']?>"> -->
+                            <select id="cars" name = "category_edit">
+                                <option value="<?php echo $edit_arr['category']?>"><?php echo $edit_arr['category']?></option>
+                                <!-- lấy ra các hãng sp(category) -->
+                                <?php $category = mysqli_query($connect,"SELECT * FROM categories");
+                                      $total_category = mysqli_num_rows($category);
+                                     
+                                      for($i=0; $i<$total_category;$i++){
+                                        $row_category = mysqli_fetch_array($category);
+                                          echo'
+                                            <option value="'.$row_category['name'].'">'.$row_category['name'].'</option>
+                                          ';
+                                      }
+                                ?>
+                        
+                                </select>
                         </div>
                         <div class="form-group col-md-8">
                                 <label for="smartphoneName" class="col-form-label">Giá sản phẩm</label>
-                                <input type="int" class="form-control" id="phonePrice"name = "price_edit" value="<?php echo $edit_arr[2]?>">
+                                <input type="int" class="form-control" id="phonePrice"name = "price_edit" value="<?php echo $edit_arr['price']?>">
                         </div>
                         <div class="form-group col-md-8">
                             <label class="col-form-label">Giới thiệu sản phẩm</label>

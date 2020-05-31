@@ -6,16 +6,16 @@ include('../includes/header.php');
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
-            <h1 class="mt-4">Đơn hàng</h1>
+            <h1 class="mt-4">Danh mục</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="../index.php">Trang chủ</a></li>
-                <li class="breadcrumb-item active">Đơn hàng</li>
+                <li class="breadcrumb-item active">Danh mục</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">Các hình ảnh quảng cáo dưới đây sẽ hiển thị trên trang web</div>
             </div>
             <div class="card mb-4">
-                <div class="card-header"><i class="fas fa-table mr-1"></i>Chi tiết đơn hàng</div>
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Danh mục</div>
                 <div class="card-body">
                     <div class="table-responsive">
 
@@ -24,15 +24,10 @@ include('../includes/header.php');
                                 <tr>
                                 <!-- <th> <button type="button" class="d-flex flex-row btn btn-success btn-rounded btn-sm " data-toggle="modal" data-target="#btn-add"><i class="fas fa-plus-square mr-2 mt-1"></i>Thêm&nbsp;&nbsp;</button></th> -->
                                 <!-- <th>Sửa</th> -->
-                                    <th>OrderCode</th>
-                                    <th>Tên người đặt hàng</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Địa chỉ</th>
-                                    <th>Tên mặt hàng</th>
-                                    <th>Số lượng</th>
-                                    <th>Giá tiền trên 1 sản phẩm</th>
-                                    <th>Ngày đặt</th>
-                                    <th>Trạng thái</th>
+                                    <th>STT</th>
+                                    <th>Tên hãng</th>
+                                    <th>Ngày nhập</th>
+                                    
                                   
                                     <!-- <th>Hình ảnh</th>
                                     <th>abc</th> -->
@@ -44,53 +39,31 @@ include('../includes/header.php');
                             <tfoot>
                                 <tr>
                                      <!-- <th>Sửa</th> -->
-                                     <th>OrderCode</th>
-                                    <th>Tên người đặt hàng</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Địa chỉ</th>
-                                    <th>Tên mặt hàng</th>
-                                    <th>Số lượng</th>
-                                    <th>Giá tiền trên 1 sản phẩm</th>
-                                    <th>Ngày đặt</th>
-                                    <th>Trạng thái</th>
-                                    
+                                     <th>STT</th>
+                                    <th>Tên hãng</th>
+                                    <th>Ngày nhập</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 <?php
 
                                 // $row[10] = null;
-                                $result = mysqli_query($connect, "SELECT * FROM orderdetails");// truy vấn orderdetails
+                                $result = mysqli_query($connect, "SELECT * FROM categories");// truy vấn orderdetails
                                
                                 
                                 $i=1;
                                 while ($row =  mysqli_fetch_array($result)) {
-                                    $orderID = $row['orderID'];
-                                    $result_order = mysqli_query($connect, "SELECT * FROM orders WHERE id = $orderID");// truy vẫn orders
-                                    $row_order = mysqli_fetch_array($result_order);
-                                    $userID = $row_order['user_id'];
-                                    $result_user = mysqli_query($connect, "SELECT * FROM users WHERE id = $userID");// truy vấn users
-                                    $row_user = mysqli_fetch_array($result_user);
-                                    // select tất cả mặt hàng mà userid đặt
-                                    $product_id = $row['product_id'];
-                                    $result_products =  mysqli_query($connect, "SELECT * FROM products WHERE id = $product_id");
-                                    $row_products = mysqli_fetch_array($result_products);
+                                    
                                     echo
                                         '<tr>
                                        
-                                        <td>' . $row_order['id'] . '</td>
+                                        <td>' . $row['id'] . '</td>
                                        
-                                        <td>' . $row_user['name'] . '</td>
-                                        <td>' . $row_order['phoneNumber'] . '</td>
-                                        <td>' . $row_order['address'] . '</td>
-                                        <td>'.$row_products['name'] .'</td>
-                                        <td>'.$row['amount'] .'</td>
-                                        <td>'.$row['priceEach']. '</td>
+                                        <td>' . $row['name'] . '</td>
+                                        
                                         <td>
-                                            ' . $row_order['dateModified'] . '
-                                        <td>
-                                            ' . $row['status'] . '
-                                        </td>
+                                            ' . $row['dateModified'] . '
+                                       
                                         
                                         
                                     </tr>';

@@ -59,9 +59,6 @@
                         </div>
                     </div>
 
-
-
-
                     <hr class="mb-4">
 
                     <hr class="mb-4">
@@ -73,48 +70,11 @@
                             <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
                             <label class="custom-control-label" for="credit">&nbsp;&nbsp;&nbsp;&nbsp;Thẻ ngân hàng</label>
                         </div>
-                        <!-- <div class="custom-control custom-radio">
-                            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                            <label class="custom-control-label" for="debit">&nbsp;&nbsp;&nbsp;&nbsp;Thẻ visa</label>
-                        </div> -->
                         <div class="custom-control custom-radio">
                             <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
                             <label class="custom-control-label" for="paypal">&nbsp;&nbsp;&nbsp;&nbsp;Tiền mặt</label>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="cc-name">Name on card</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                            <small class="text-muted">Full name as displayed on card</small>
-                            <div class="invalid-feedback">
-                                Name on card is required
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="cc-number">Credit card number</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                            <div class="invalid-feedback">
-                                Credit card number is required
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label for="cc-expiration">Expiration</label>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                            <div class="invalid-feedback">
-                                Expiration date required
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="cc-cvv">CVV</label>
-                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-                            <div class="invalid-feedback">
-                                Security code required
-                            </div>
-                        </div>
-                    </div> -->
                     <hr class="mb-4">
                     <a href="../phone/cart.php" class="btn btn-primary btn-lg btn-block">Xem lại giỏ hàng</a>
                     <button class="btn btn-primary btn-lg btn-block" name = "order" type="submit">Đặt hàng</button>

@@ -3,7 +3,7 @@ setcookie('currentPage', '../phone/add_cart.php', time() + 3600, '/', '', 0);
 include('../includes/data.php');
 include('../includes/head.php');
 
-
+$amount = 1;
 if (isset($_COOKIE['userId'])) {
     if (isset($_GET['buynow'])) {
         $id = $_GET['buynow'];
@@ -12,8 +12,21 @@ if (isset($_COOKIE['userId'])) {
         $row = mysqli_fetch_array($result); // mảng của products
         $row_details = mysqli_fetch_array($product_details); // mảng của products details
         $link = "../images/" . $row['image'];
-
-        $amount = 0;
+        $max = $row['quantityInStock'];
+        if($max>=5){
+            $max = 5;
+        }
+        else{
+            $max = $row['quantityInStock'];
+        }
+        if(isset($_SESSION['cart'])){
+            $cart = $_SESSION['cart'];
+            if(array_key_exists($id,$cart)){
+                $amount = (int)$_SESSION['cart'][$id]['num'];
+                // echo $amount;
+            }
+        }
+       
     }
 } else {
     if (isset($_GET['buynow'])) {
@@ -24,8 +37,13 @@ if (isset($_COOKIE['userId'])) {
         $row = mysqli_fetch_array($result);
         $link = "../images/" . $row['image'];
         $num_of_product = 0; // số lượng của sp có $id trong giỏ hàng
-
-        $amount = 0;
+        if(isset($_SESSION['cart'])){
+            $cart = $_SESSION['cart'];
+            if(array_key_exists($id,$cart)){
+                $amount = (int)$_SESSION['cart'][$id]['num'];
+                // echo $amount;
+            }
+        }
     }
 }
 ?>
@@ -91,10 +109,10 @@ if (isset($_COOKIE['userId'])) {
                             <h4 class="price text-danger">Giá khuyến mãi: <span><?php echo floor($row['price'] / 1000000) . '.' .   $row['price'] % 1000000 / 1000 . '.' . '000' ?> &nbsp;đ</span></h4>
 
                             <p class="vote"><strong>91%</strong> người mua hài lòng về sản phẩm! <strong>(87 votes)</strong></p>
-
+                            <strong style="margin-bottom: 2px">Số lượng: <?php echo $row['quantityInStock']?></strong>
                             <div class="action">
                                 <form action="./cart.php" method="GET">
-                                    <input type="number" name="amount" value="<?php echo $amount ?>" style="width:100px;height:30px;border:none; margin-right:10px;text-align: center;background-color:#ff9f1a;">
+                                    <input type="number" min="1" max="<?php echo $max?>" name="amount" value="<?php echo $amount ?>" style="width:100px;height:30px;border:none; margin-right:10px;text-align: center;background-color:#ff9f1a;">
 
                                     <button type="submit" name="add_cart" value="<?php echo $id ?>" class="add-to-cart btn btn-default">Thêm vào giỏ hàng</button>
                                 </form>
@@ -113,7 +131,7 @@ if (isset($_COOKIE['userId'])) {
                             </div>
                             <div style="margin-top: 10px; text-align: center; color: #3c3d41;float: left;width: 100%;">
                                 <a href="https://cellphones.com.vn/tra-gop/mpos" target="_blank">Trả góp 0% với thẻ tín dụng tại cửa hàng - Xem chi tiết </a><br>
-                                Gọi miễn phí: <b>1800.2097</b> 
+                                Gọi miễn phí: <b>1800.2097</b>
                             </div>
                         </div>
                     </div>
@@ -164,96 +182,44 @@ if (isset($_COOKIE['userId'])) {
                             <td style="width:200px">Pin:</td>
                             <td><?php echo $row_details['pin'] ?></td>
                         </tr>
+
                     </tbody>
                 </table>
-            </div>
+                <div class="item"></div>
+                <button type="button"  class="btn border-info rounded-pill " data-toggle="modal" data-target="#thanks">
+                More
+                </button>
 
-
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <div class="well well-sm">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-6 text-center">
-                                <h1 class="rating-num">
-                                    4.0</h1>
-                                <div class="rating">
-                                    <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
-                                    </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
-                                    </span><span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <div>
-                                    <span class="glyphicon glyphicon-user"></span>1,050,008 total
-                                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="thanks" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Cảm ơn quý khách đã quan tâm</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="col-xs-12 col-md-6">
-                                <div class="row rating-desc">
-                                    <div class="col-xs-3 col-md-3 text-right">
-                                        <span class="glyphicon glyphicon-star"></span>5
-                                    </div>
-                                    <div class="col-xs-8 col-md-9">
-                                        <div class="progress progress-striped">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                                <span class="sr-only">80%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end 5 -->
-                                    <div class="col-xs-3 col-md-3 text-right">
-                                        <span class="glyphicon glyphicon-star"></span>4
-                                    </div>
-                                    <div class="col-xs-8 col-md-9">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                                <span class="sr-only">60%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end 4 -->
-                                    <div class="col-xs-3 col-md-3 text-right">
-                                        <span class="glyphicon glyphicon-star"></span>3
-                                    </div>
-                                    <div class="col-xs-8 col-md-9">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                <span class="sr-only">40%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end 3 -->
-                                    <div class="col-xs-3 col-md-3 text-right">
-                                        <span class="glyphicon glyphicon-star"></span>2
-                                    </div>
-                                    <div class="col-xs-8 col-md-9">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                <span class="sr-only">20%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end 2 -->
-                                    <div class="col-xs-3 col-md-3 text-right">
-                                        <span class="glyphicon glyphicon-star"></span>1
-                                    </div>
-                                    <div class="col-xs-8 col-md-9">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                                <span class="sr-only">15%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end 1 -->
-                                </div>
-                                <!-- end row -->
+                            <div class="modal-body">
+                                TTC Shop cam kết mọi sản phẩm của shop đều là hàng chính hãng mới 100% new seal. Tất cả đều được shop bảo hành ít nhất 12 tháng,
+                                với những mẫu cá biệt được bảo hành đến 18 tháng. TTC mua sự hài lòng của quý khách, cảm ơn quý khách đã ghé qua trang web của cửa hàng.
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+<!-- abc -->
+
         </div>
 
+
         <?php
+
         include('../includes/foot.php');
         ?>
     </body>

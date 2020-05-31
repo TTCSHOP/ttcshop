@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th5 29, 2020 lúc 09:12 AM
--- Phiên bản máy phục vụ: 8.0.13-4
--- Phiên bản PHP: 7.2.24-0ubuntu0.18.04.6
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 31, 2020 lúc 05:33 AM
+-- Phiên bản máy phục vụ: 10.4.11-MariaDB
+-- Phiên bản PHP: 7.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `BjCXAnz6lX`
+-- Cơ sở dữ liệu: `dbbtl`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `advertisement` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `position` int(11) NOT NULL,
   `dateModified` date NOT NULL
@@ -51,44 +51,6 @@ INSERT INTO `advertisement` (`id`, `name`, `image`, `position`, `dateModified`) 
 (12, 'qc8', 'ad_3.jpg', 1, '2020-05-26'),
 (13, 'qc9', 'ad6.jpg', 1, '2020-05-26'),
 (14, 'qc10', 'ad7.jpg', 1, '2020-05-26');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `cart`
---
-
-CREATE TABLE `cart` (
-  `id` int(11) NOT NULL,
-  `product_id` int(11) UNSIGNED NOT NULL,
-  `amount` int(11) NOT NULL,
-  `totalMoney` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `dateModified` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `cart`
---
-
-INSERT INTO `cart` (`id`, `product_id`, `amount`, `totalMoney`, `user_id`, `dateModified`) VALUES
-(29, 3, 2, 550000000, 47, '2020-04-20'),
-(30, 6, 4, 330000000, 47, '2020-04-20'),
-(31, 7, 730, 53000000, 47, '2020-04-20'),
-(39, 1, 1, 29990000, 48, '2020-04-20'),
-(40, 3, 73, 5500000, 48, '2020-04-20'),
-(46, 1, 1, 29990000, 44, '2020-04-20'),
-(47, 6, 4, 13200000, 56, '2020-04-20'),
-(48, 1, 1, 299900000, 45, '2020-04-20'),
-(49, 7, 5, 26500000, 44, '2020-04-20'),
-(50, 2, 1, 179950000, 44, '2020-04-20'),
-(56, 6, 4, 6600000, 1, '2020-04-21'),
-(57, 2, 1, 35990000, 1, '2020-04-23'),
-(70, 2, 2, 63980000, 72, '2020-05-01'),
-(71, 5, 2, 47200000, 67, '2020-05-01'),
-(72, 7, 1, 5300000, 69, '2020-05-01'),
-(73, 1, 5, 128500000, 75, '2020-05-13'),
-(76, 2, 1, 31990000, 76, '2020-05-25');
 
 -- --------------------------------------------------------
 
@@ -125,15 +87,15 @@ CREATE TABLE `orderdetails` (
   `orderID` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
   `amount` int(10) UNSIGNED NOT NULL,
-  `totalMoney` int(10) UNSIGNED NOT NULL,
-  `status` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `priceEach` int(10) UNSIGNED NOT NULL,
+  `status` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `orderdetails`
 --
 
-INSERT INTO `orderdetails` (`id`, `orderID`, `product_id`, `amount`, `totalMoney`, `status`) VALUES
+INSERT INTO `orderdetails` (`id`, `orderID`, `product_id`, `amount`, `priceEach`, `status`) VALUES
 (1, 1, 7, 4, 15900000, 'shipped'),
 (2, 1, 7, 4, 15900000, '2020-04-20 10:14:02'),
 (3, 1, 2, 2, 71980000, '2020-04-20 10:14:02'),
@@ -155,7 +117,9 @@ INSERT INTO `orderdetails` (`id`, `orderID`, `product_id`, `amount`, `totalMoney
 (21, 25, 1, 1, 39980000, '2020-04-30 11:18:59'),
 (22, 28, 2, 20, 639800000, '2020-05-01 06:30:46'),
 (23, 29, 2, 1, 31990000, '2020-05-21 15:55:12'),
-(24, 29, 1, 1, 25700000, '2020-05-21 15:55:12');
+(24, 29, 1, 1, 25700000, '2020-05-21 15:55:12'),
+(25, 38, 1, 1, 25700000, '2020-05-31 10:21:50'),
+(26, 38, 2, 1, 31990000, '2020-05-31 10:21:50');
 
 -- --------------------------------------------------------
 
@@ -168,7 +132,7 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL,
   `dateModified` date NOT NULL,
   `phoneNumber` int(10) UNSIGNED NOT NULL,
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -204,7 +168,16 @@ INSERT INTO `orders` (`id`, `user_id`, `dateModified`, `phoneNumber`, `address`)
 (26, 70, '2020-04-27', 365341179, '38 Dương Quảng Hàm'),
 (27, 67, '2020-04-30', 975109203, 'Trung Văn- Nam Từ Liêm'),
 (28, 72, '2020-05-01', 123456789, 'Hà Nội'),
-(29, 76, '2020-05-21', 964875742, '1234');
+(29, 76, '2020-05-21', 964875742, '1234'),
+(30, 1, '2020-05-31', 12345678, 'ABC'),
+(31, 1, '2020-05-31', 0, '12345'),
+(32, 1, '2020-05-31', 123, '123'),
+(33, 1, '2020-05-31', 11, '11'),
+(34, 1, '2020-05-31', 12, '12'),
+(35, 1, '2020-05-31', 0, 'a'),
+(36, 1, '2020-05-31', 0, 'b'),
+(37, 1, '2020-05-31', 0, 'c'),
+(38, 1, '2020-05-31', 11, 'd');
 
 -- --------------------------------------------------------
 
@@ -214,17 +187,17 @@ INSERT INTO `orders` (`id`, `user_id`, `dateModified`, `phoneNumber`, `address`)
 
 CREATE TABLE `productdetails` (
   `id` int(11) UNSIGNED NOT NULL,
-  `screen` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `camera` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cpu` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ram` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sim` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pin` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image1` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image2` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image3` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `youtube` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `screen` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `camera` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cpu` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ram` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sim` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pin` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image1` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image2` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image3` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `youtube` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `isdeleted` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
@@ -258,9 +231,9 @@ CREATE TABLE `products` (
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
   `brief description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `dateModified` date NOT NULL,
-  `category` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `category` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `quantityInStock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -269,9 +242,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `brief description`, `image`, `dateModified`, `category`, `quantityInStock`) VALUES
-(1, 'Samsung Galaxy S20 Ultra', 25700000, 'Tặng kèm galaxy buds+, bảo hành 1 đổi 1 12 tháng', 'phone1.jpeg', '2020-04-23', 'SamSung', 19),
-(2, 'iPhone 11 Pro 256GB  Chính hãng', 31990000, 'Giảm 200.000đ khi mua kèm tai nghe airpods và bảo hành 12 tháng 1 đổi 1', 'phone2.jpg', '2020-04-23', 'Iphone', 14),
-(3, 'Oppo A31', 3790000, 'Bảo hành 12 tháng 1 đổi 1', 'phone3.jpg', '2020-04-23', 'Oppo', 25),
+(1, 'Samsung Galaxy S20 Ultra', 25700000, 'Tặng kèm galaxy buds+, bảo hành 1 đổi 1 12 tháng', 'phone1.jpeg', '2020-04-23', 'SamSung', 16),
+(2, 'iPhone 11 Pro 256GB  Chính hãng', 31990000, 'Giảm 200.000đ khi mua kèm tai nghe airpods và bảo hành 12 tháng 1 đổi 1', 'phone2.jpg', '2020-04-23', 'Iphone', 12),
+(3, 'Oppo A31', 3790000, 'Bảo hành 12 tháng 1 đổi 1', 'phone3.jpg', '2020-04-23', 'Oppo', 24),
 (4, ' Huawei P40 Pro', 21990000, 'Tặng pin sạc dự phòng anker powercore 20000mah pd a1275', 'huaweipro40.jpg', '2020-04-23', 'Huawei', 16),
 (5, 'Samsung Galaxy Note 10+', 23600000, 'Tặng galaxy buds+ bảo hành 1 đổi 1 12 tháng', 'phone5.jpeg', '2020-04-23', 'SamSung', 10),
 (6, 'Vsmart Joy 3', 3300000, 'Tặng sim 4g mobifone c90n 4gb/ngày', 'phone6.jpg', '2020-04-23', 'Vsmart', 18),
@@ -291,11 +264,11 @@ INSERT INTO `products` (`id`, `name`, `price`, `brief description`, `image`, `da
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dateModified` date NOT NULL,
-  `authorization` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `authorization` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -383,14 +356,6 @@ ALTER TABLE `advertisement`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
 -- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
@@ -442,12 +407,6 @@ ALTER TABLE `advertisement`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT cho bảng `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
-
---
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
@@ -457,13 +416,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `orderdetails`
 --
 ALTER TABLE `orderdetails`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT cho bảng `productdetails`
@@ -488,13 +447,6 @@ ALTER TABLE `users`
 --
 
 --
--- Các ràng buộc cho bảng `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
 -- Các ràng buộc cho bảng `orderdetails`
 --
 ALTER TABLE `orderdetails`
@@ -517,7 +469,7 @@ ALTER TABLE `productdetails`
 -- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category`) REFERENCES `categories` (`name`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category`) REFERENCES `categories` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

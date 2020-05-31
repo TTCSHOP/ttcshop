@@ -95,7 +95,7 @@ include('../includes/header.php');
                                         </td>
                                         <td>' . $i . '</td>
                                         <td>
-                                            <img src="../../../images/' . $row['image'] . '">
+                                            <img src="../../../images/' . $row['image'] . '"style="width:200px">
                                         </td>
                                         <td>' . $row['name'] . '</td>
                                         <td>' . $row['category'] . '</td>
