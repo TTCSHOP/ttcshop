@@ -9,7 +9,11 @@
     // tăng trưởng
     // Tháng hiện tại
     $total = mysqli_query($connect,"
+<<<<<<< HEAD
         SELECT SUM(priceEach*amount)
+=======
+        SELECT SUM(totalMoney)
+>>>>>>> 5ee3003709ad2e3cd3b20692969cb724871e6467
         FROM orders o
         JOIN orderdetails od
         ON o.id = od.id
