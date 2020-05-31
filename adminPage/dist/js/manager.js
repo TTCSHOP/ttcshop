@@ -1,4 +1,4 @@
-function ___getdata(elem) {
+function getdata(elem) {
      console.log(1);
     $.ajax({
         url: "../handler/edit.php",
