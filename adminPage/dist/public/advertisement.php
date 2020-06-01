@@ -25,8 +25,9 @@ include('../includes/header.php');
                                     <!-- <th>Sửa</th> -->
                                         <th>STT</th>
                                         <th>Tên quảng cáo</th>
-                                        <th>Vị trí</th>
                                         <th>Hình ảnh</th>
+                                        <th>Vị trí</th>
+                                        
                                         <th>Ngày thêm</th>
                                     </tr>
                                 </thead>
@@ -35,8 +36,9 @@ include('../includes/header.php');
                                         <th></th>
                                         <th>STT</th>
                                         <th>Tên quảng cáo</th>
-                                        <th>Vị trí</th>
                                         <th>Hình ảnh</th>
+                                        <th>Vị trí</th>
+                                        
                                         <th>Ngày thêm</th>
                                     </tr>
                                 </tfoot>
