@@ -44,10 +44,11 @@ if (isset($_POST['search'])) {
                 echo '</div></div>';
                
             } 
-        }
+        
             else {
                 header("Location:./notFound.php");
                 exit();
+            }
             }
             include('../includes/foot.php');
         // }
