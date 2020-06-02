@@ -7,22 +7,23 @@ if (isset($_POST['search'])) {
         header("Location:../index.php");
         exit();
     } else {
-        $result = mysqli_query($connect, "
+        $result_pr = mysqli_query($connect, "
             SELECT * FROM products WHERE  (name LIKE '%$searchtxt%'
-                OR category LIKE '%$searchtxt%')AND quantityInStock>=0;
+                OR category LIKE '%$searchtxt%') AND quantityInStock>=0;
                  ");
-        if ($result) {
-            include('../includes/head.php');
-            require('../includes/advertisement.php');
-            $num = mysqli_num_rows($result);
-            echo '<div class=" container mt-5 " id="content">';
-            echo '<div class="content-card d-flex justify-content-between flex-wrap">';
+        if ($result_pr) {
+            $num = mysqli_num_rows($result_pr);
             if ($num > 0 && $num < 10) {
+                include('../includes/head.php');
+                require('../includes/advertisement.php');
+                echo '<div class=" container mt-5 " id="content">';
+                echo '<div class="content-card d-flex justify-content-between flex-wrap">';
+                
                 for ($j = 1; $j <= $num; $j++) {
                     // $result = mysqli_query($connect, "SELECT * FROM products WHERE id=$i");
 
-                    $row[$j] =  mysqli_fetch_array($result);
-
+                    $row[$j] =  mysqli_fetch_array($result_pr);
+                   
                     echo
                         '<div class="card mb-3 mr-ml-1" style="width: 270px;">
                         <a  href="../phone/add_cart.php?buynow=' . $row[$j][0] . '">
@@ -41,11 +42,21 @@ if (isset($_POST['search'])) {
                             </div>';
                 }
                 echo '</div></div>';
+               
+            } 
+        
+            else {
+                // header("Location:./notFound.php");
+                echo '<script language="javascript">
+                var do_alert = setTimeout(function(){
+                    alert("Chào mừng bạn đến với freetuts.net");
+                }, 3000);</script>'; 
+                header("Location:./notFound.php");
+                
+                exit();
             }
-        } else {
-            header("Location:./notFound.php");
-             include('../includes/foot.php');
-        }
-       
+            }
+            include('../includes/foot.php');
+        // }
     }
 }
