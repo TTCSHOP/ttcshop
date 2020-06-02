@@ -42,21 +42,7 @@ include('./includes/data.php');
                             }
                         }
                     ?>
-                        <!-- <div class="carousel-item active">
-                            <img src="./images/ad_1.png" style="width: 100%;">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./images/ad_2.jpg" style="width: 100%;">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./images/ad_3.jpg" style="width: 100%;">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./images/ad6.jpg" class="d-block w-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./images/ad7.jpg" class="d-block w-100" alt="...">
-                        </div> -->
+                        
                     </div>
 
                     <!-- Left and right controls -->
@@ -89,12 +75,7 @@ include('./includes/data.php');
                             }
                         }
                     ?>
-                        <!-- <div class="carousel-item active">
-                            <img src="./images/ad4.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./images/ad5.jpg" class="d-block w-100" alt="...">
-                        </div> -->
+                       
 
 
                     </div>
@@ -117,7 +98,7 @@ include('./includes/data.php');
                             ';
                         }
                     ?>
-                    <!-- <img src="./images/ad22.jpg" style="width:100%; "> -->
+                   
                 </div>
             </div>
 
@@ -136,7 +117,7 @@ include('./includes/data.php');
                 ';
             }
         ?>
-        <!-- <img src="./images/ads3.jpg" style="width:100% "> -->
+       
 
     </div>
   <!-- hot sale -->
