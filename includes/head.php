@@ -1,3 +1,7 @@
+<?php
+include('../includes/data.php');
+// $imageSrc = mysqli_query($connect, "SELECT 'Image' FROM products WHERE ID = 1");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
