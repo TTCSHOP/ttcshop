@@ -4,7 +4,7 @@ require('../includes/data.php');
 if (isset($_POST['search'])) {
     $searchtxt = $_POST['searchtext'];
     if ($searchtxt == '') {
-        header("Location:./notFound.php");
+        header("Location:../index.php");
         exit();
     } else {
         $result = mysqli_query($connect, "
@@ -41,11 +41,11 @@ if (isset($_POST['search'])) {
                             </div>';
                 }
                 echo '</div></div>';
-            } else {
-                header("Location:./notFound.php");
-                exit();
             }
-            include('../includes/foot.php');
+        } else {
+            header("Location:./notFound.php");
+             include('../includes/foot.php');
         }
+       
     }
 }

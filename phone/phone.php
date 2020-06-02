@@ -14,7 +14,7 @@ echo '<div class="card-group container mt-2" id="content">';
 echo '<div class="content-card d-flex justify-content-between flex-wrap">';
 $result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >0");
 $num=mysqli_num_rows($result);
-for ($i = 1; $i <= $num; $i++) {
+for ($i = 1; $i <= 8; $i++) {
     // $result = mysqli_query($connect, "SELECT * FROM products");
 
     $row[$i] =  mysqli_fetch_array($result);
@@ -73,7 +73,7 @@ $row[10] = null;
 echo '<div class="card-group container mt-2" id="content">';
 echo '<div class="content-card d-flex justify-content-between flex-wrap">';
 $result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >0");
-for ($i = 1; $i <= 8; $i++) {
+for ($i = 1; $i <= $num; $i++) {
     // $result = mysqli_query($connect, "SELECT * FROM products");
 
     $row[$i] =  mysqli_fetch_array($result);
