@@ -12,12 +12,14 @@ if (isset($_POST['search'])) {
                 OR category LIKE '%$searchtxt%') AND quantityInStock>=0;
                  ");
         if ($result) {
-            include('../includes/head.php');
-            require('../includes/advertisement.php');
             $num = mysqli_num_rows($result);
-            echo '<div class=" container mt-5 " id="content">';
-            echo '<div class="content-card d-flex justify-content-between flex-wrap">';
-            if ($num > 0 && $num < 10) {
+            if ($num > 0) {
+                include('../includes/head.php');
+                require('../includes/advertisement.php');
+               
+                echo '<div class=" container mt-5 " id="content">';
+                echo '<div class="content-card d-flex justify-content-between flex-wrap">';
+                if($num >8) $num =8;
                 for ($j = 1; $j <= $num; $j++) {
                     // $result = mysqli_query($connect, "SELECT * FROM products WHERE id=$i");
 
@@ -42,11 +44,11 @@ if (isset($_POST['search'])) {
                 }
                 echo '</div></div>';
             } 
-        }
-            else {
+                    else {
                 header("Location:./notFound.php");
                 exit();
             }
+        }
             include('../includes/foot.php');
         // }
     }
