@@ -9,7 +9,7 @@ if (isset($_POST['search'])) {
     } else {
         $result = mysqli_query($connect, "
             SELECT * FROM products WHERE  (name LIKE '%$searchtxt%'
-                OR category LIKE '%$searchtxt%')AND quantityInStock>=0;
+                OR category LIKE '%$searchtxt%') AND quantityInStock>=0;
                  ");
         if ($result) {
             include('../includes/head.php');
@@ -41,11 +41,13 @@ if (isset($_POST['search'])) {
                             </div>';
                 }
                 echo '</div></div>';
-            } else {
+            } 
+        }
+            else {
                 header("Location:./notFound.php");
                 exit();
             }
             include('../includes/foot.php');
-        }
+        // }
     }
 }
