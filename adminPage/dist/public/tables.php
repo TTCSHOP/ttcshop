@@ -69,26 +69,32 @@ include('../includes/header.php');
                                 <?php
 
                                 // $row[10] = null;
-                                $result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >0");
-                                $result_details = mysqli_query($connect, "SELECT * FROM productdetails WHERE isdeleted is NULL");
-                                
+                                // $result = mysqli_query($connect, "SELECT * FROM products WHERE quantityInStock >0");
+                                // $result_details = mysqli_query($connect, "SELECT * FROM productdetails WHERE isdeleted is NULL");
+                                $result = mysqli_query($connect, "
+                                SELECT p.*, pd.*
+                                FROM products p 
+                                JOIN productdetails pd 
+                                ON p.id = pd.id
+                                WHERE p.quantityInStock >=0 AND pd.isdeleted IS NULL
+                                ");
                                 $i=1;
                                 while ($row =  mysqli_fetch_array($result)) {
-                                    $row_details = mysqli_fetch_array($result_details);
+                                    // $row_details = mysqli_fetch_array($result_details);
                                     echo
                                         '<tr>
                                         <td >
                                             <form action ="../handler/view.php" method="GET">
                                                 <button type="submit" class="btn btn-info btn-rounded btn-sm my-0 mb-2 mt-2"style="background-color: rgb(163, 165, 43);"name="view" data-toggle="modal"data-target="#btn-edit" 
-                                                value = "'.$row[0].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Xem&nbsp&nbsp;&nbsp; </button>
+                                                value = "'.$row['id'].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Xem&nbsp&nbsp;&nbsp; </button>
                                             </form>
                                             <form action ="../handler/edit.php" method="GET">
                                                 <button type="submit" class="btn btn-info btn-rounded btn-sm my-0 mb-2"name="edit" data-toggle="modal"data-target="#btn-edit" 
-                                                value = "'.$row[0].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Sửa&nbsp&nbsp;&nbsp; </button>
+                                                value = "'.$row['id'].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Sửa&nbsp&nbsp;&nbsp; </button>
                                             </form>
                                             <form action="../handler/delete.php" method="GET">
                                                 <button type="submit" class="btn btn-danger btn-rounded btn-sm my-0"name="delete" data-toggle="modal"
-                                                value = "'.$row[0].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Xóa&nbsp&nbsp;&nbsp; </button>
+                                                value = "'.$row['id'].'" class="btn btn-primary" data-toggle="collapse"></i>&nbsp;Xóa&nbsp&nbsp;&nbsp; </button>
                                             </form>
                                           
                                            
@@ -103,24 +109,24 @@ include('../includes/header.php');
                                         <td>' . $row['brief description'] . '</td>
 
                                         <td>
-                                            ' . $row_details['screen'] . '
+                                            ' . $row['screen'] . '
                                         <td>
-                                            ' . $row_details['camera'] . '
+                                            ' . $row['camera'] . '
                                         </td>
                                         <td>
-                                            ' . $row_details['cpu'] . '
+                                            ' . $row['cpu'] . '
                                         </td>
                                         <td>
-                                            ' . $row_details['sim'] . '
+                                            ' . $row['sim'] . '
                                         </td>
                                         <td>
-                                            ' . $row_details['pin'] . '
+                                            ' . $row['pin'] . '
                                         </td>
                                         <td>
-                                            ' . $row_details['ram'] . '
+                                            ' . $row['ram'] . '
                                         </td>
                                         <td>
-                                            ' . $row_details['rom'] . '
+                                            ' . $row['rom'] . '
                                         </td>
                                         <td>' . $row['quantityInStock'] . '</td>
                                         
