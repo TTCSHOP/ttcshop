@@ -35,7 +35,6 @@ include('../includes/data.php');
                 <strong>TTC Shop</strong> </a>
 
             <!-- <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button> -->
-<<<<<<< HEAD
 
 
             <ul class="navbar-nav ml-3">
@@ -64,36 +63,6 @@ include('../includes/data.php');
 
                 </li>
 
-=======
-
-
-            <ul class="navbar-nav ml-3">
-                <li class="nav-item">
-                    
-                        <!-- <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"> -->
-                        
-                            <form action="../query/search.php" method="POST">
-                                <div class="input-group ml-5 " style="width: 40vw; ">
-                                    <input type="text" class="form-control" style="width: 30vw"  name="searchtext" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
-                                    <div class="input-group-append">
-                                    <button type="submit" name="search" class="btn btn-danger"id="button-addon2">Search</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- <button class="btn btn-danger" type="button" id="button-addon2">Search</button> -->
-                       
-                    
-                </li>
-
-
-                <li class="nav-item ">
-                    <div class="btn btn-info ml-5 ">
-                        <a class="text-dark " href="../phone/cart.php" style="text-decoration: none;"><i class="fa fa-cart-plus"></i></i> Giỏ hàng</a>
-                    </div>
-
-                </li>
-
->>>>>>> 75da474475c746a61fc347901206b3355922453e
                 <li class="nav-item ">
                     <div class="btn btn-info ">
                         <a class="text-dark " href="../support/support.php" style="text-decoration: none;"><i class="fas fa-question-circle text-dark"></i> Support</a>

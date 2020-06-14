@@ -27,8 +27,8 @@
                 $row = mysqli_fetch_array($result);
                 // set cookie
                 setcookie('userId', $row['id'], time() + 3600, '/', '', 0);
-                $currentPage = (isset($_COOKIE['currentPage'])) ? $_COOKIE['currentPage'] : '../index.php';
-                header("Location: $currentPage"); 
+                // $currentPage = (isset($_COOKIE['currentPage'])) ? $_COOKIE['currentPage'] : '../index.php';
+                header("Location: ../index.php"); 
                 exit();
                 
               

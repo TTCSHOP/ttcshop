@@ -1,5 +1,5 @@
 <?php
-setcookie('currentPage', '../phone/add_cart.php', time() + 3600, '/', '', 0);
+// setcookie('currentPage', '../phone/add_cart.php', time() + 3600, '/', '', 0);
 include('../includes/data.php');
 include('../includes/head.php');
 

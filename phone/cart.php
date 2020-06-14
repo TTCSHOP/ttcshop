@@ -1,7 +1,7 @@
 <?php
 session_start();
   // setcookie
-  setcookie('currentPage', '../phone/cart.php', time() + 3600, '/', '', 0);
+  // setcookie('currentPage', '../phone/cart.php', time() + 3600, '/', '', 0);
   
   include('../includes/data.php');
   include('../includes/head.php');
