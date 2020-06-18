@@ -3,3 +3,5 @@
 1. Link demo: https://tccshopphone.herokuapp.com/
 2. Link demo adminPage:
 https://tccshopphone.herokuapp.com/adminPage/dist/admin/sign_in.php
+# tài khoản: teacher@gmail.com
+# mật khẩu: 1234567
